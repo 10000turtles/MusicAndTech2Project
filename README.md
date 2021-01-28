@@ -1,1 +1,3 @@
-# MusicAndTech2Project
+# Music and Tech 2 Project - C++ Midi Library
+
+Don't pay attention to me, I don't have anything here yet, but I will soon! You see nothing...
