@@ -1,0 +1,1 @@
+/usr/bin/c++  -g -Wall -Wextra -pedantic  -lstdc++fs -rdynamic CMakeFiles/asciimidi.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/asciimidi.cpp.o -o asciimidi  libmidifile.a -lstdc++fs 

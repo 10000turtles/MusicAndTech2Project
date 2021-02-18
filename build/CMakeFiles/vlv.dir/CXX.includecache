@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/inc/Options.h
+iostream
+-
+map
+-
+string
+-
+vector
+-
+
+/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/vlv.cpp
+../src/inc/Options.h
+/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/inc/Options.h
+iomanip
+-
+iostream
+-
+stdlib.h
+-
+string
+-
+

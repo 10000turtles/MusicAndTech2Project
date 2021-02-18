@@ -1,0 +1,23 @@
+Determining if files humdrum.h exist failed with the following output:
+Change Dir: /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_e4e47/fast && /usr/bin/make  -f CMakeFiles/cmTC_e4e47.dir/build.make CMakeFiles/cmTC_e4e47.dir/build
+make[1]: Entering directory '/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e4e47.dir/HAVE_HUMDRUM_H.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_e4e47.dir/HAVE_HUMDRUM_H.c.o -c /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles/CheckIncludeFiles/HAVE_HUMDRUM_H.c
+/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles/CheckIncludeFiles/HAVE_HUMDRUM_H.c:2:10: fatal error: humdrum.h: No such file or directory
+ #include <humdrum.h>
+          ^~~~~~~~~~~
+compilation terminated.
+make[1]: *** [CMakeFiles/cmTC_e4e47.dir/build.make:85: CMakeFiles/cmTC_e4e47.dir/HAVE_HUMDRUM_H.c.o] Error 1
+make[1]: Leaving directory '/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:140: cmTC_e4e47/fast] Error 2
+
+
+Source:
+/* */
+#include <humdrum.h>
+
+
+int main(void){return 0;}
+
