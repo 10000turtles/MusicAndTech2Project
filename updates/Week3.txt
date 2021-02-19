@@ -1,0 +1,58 @@
+Week 3 - The beginning of the Markov Generation
+
+This week was all about coding the first iteration of the markov chain model. 
+The way I went about it involved mapping a list of previous notes to another map of notes paired with frequencies. 
+The full data structure was organized as such,
+
+                Map
+                / \
+               /   \
+        previous    Map
+          notes     / \
+                   /   \
+                next  frequency
+                note
+
+This general model allows me to have any level of markov chain and also have weighting on how often a (list,note) pair occurs.
+The algorithm I used to fill the structure was to take every possible string of notes with length of (level+1) and make an entry for that string of notes.
+
+level = 3; //specifying the level
+
+-------------------------------------------
+| e_0 | e_1 | e_2 | e_3 | e_4 | ... | e_n |
+-------------------------------------------
+
+Map[(e_(i-3),e_(i-2),e_(i-1))][e_i]++; //for i = 3..n
+// Example:  Map[(e_1,e_2,e_3)][e_4]++;
+
+The algorithm used to generate new music is simple. Start at a given entry, pick a new note based on the weighting of the entry, adjust your previous notes and repeat.
+
+                --------------
+previousNotes = | A | Bb | C | 
+                --------------
+     
+                       -------------------------------
+mapOfWeightedChoices = | (D , 2) | (E , 4) | (A , 1) |    // 2/7 chance of picking D, 4/7 chance of picking E, and 1/7 chance of picking A
+                       -------------------------------
+
+pickedNote = E // suppose we pick E
+
+                   --------------
+newPreviousNotes = | Bb | C | E | 
+                   --------------
+
+In the case that there is no continuation from a given list of notes, I decided that reseeding the previous notes was the best way to go. 
+The problem with just picking a random note is that there is no guerantee that your program will ever generate a list of random notes 
+that alligns with one of the entries in your map. This is especially true the higher degree of markov model you use.
+
+For the rhythm aspect of the music, I just decided to copy the original rhythm of each of my sample midi files and put new notes to each of them. 
+This means for 10 of my solos, 10 new ones will be made.
+
+I then listened to all ten new solos that were made in the context of the song they were taken from and handpicked one of them to export to a listenable format.
+I have copied the midi files and the wav file of the music made into the content folder for anybody to listen to.
+
+There was a bit of a minor hiccup in programming which was the use of the filesystem library.
+I was using this library to iterate through all of the midifiles in a directory.
+However, this library would only work when compiled directly through command line instead of in cmake. 
+It feels like there should be a solution however 2 hours of debugging says otherwise.
+
