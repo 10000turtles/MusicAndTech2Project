@@ -40,7 +40,7 @@ if(MSVC)
 endif()
 
 
-
+add_executable(jazz ../src/jazzMachine.cpp)
 SET(GCC_COVERAGE_COMPILE_FLAGS "-g -Wall -Wextra -pedantic")
 SET(GCC_COVERAGE_LINK_FLAGS    "-lstdc++fs")
 
@@ -123,7 +123,7 @@ add_executable(tohex ../tools/tohex.cpp)
 add_executable(type0 ../tools/type0.cpp)
 add_executable(vlv ../tools/vlv.cpp)
 add_executable(test ../src/test.cpp)
-add_executable(jazz ../src/jazzMachine.cpp)
+
 
 target_link_libraries(80off midifile)
 target_link_libraries(asciimidi midifile)
@@ -158,7 +158,7 @@ target_link_libraries(todec midifile)
 target_link_libraries(tohex midifile)
 target_link_libraries(type0 midifile)
 target_link_libraries(vlv midifile)
-target_link_libraries(stdc++fs midifile)
+#target_link_libraries(stdc++fs midifile)
 
 if(HAVE_UNISTD_H AND HAVE_SYS_IO_H)
     add_executable(midi2beep ../tools/midi2beep.cpp)

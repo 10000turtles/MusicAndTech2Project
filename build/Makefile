@@ -189,84 +189,6 @@ midi2beep/fast:
 .PHONY : midi2beep/fast
 
 #=============================================================================
-# Target rules for targets named midi2text
-
-# Build rule for target.
-midi2text: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 midi2text
-.PHONY : midi2text
-
-# fast build rule for target.
-midi2text/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2text.dir/build.make CMakeFiles/midi2text.dir/build
-.PHONY : midi2text/fast
-
-#=============================================================================
-# Target rules for targets named midi2notes
-
-# Build rule for target.
-midi2notes: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 midi2notes
-.PHONY : midi2notes
-
-# fast build rule for target.
-midi2notes/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2notes.dir/build.make CMakeFiles/midi2notes.dir/build
-.PHONY : midi2notes/fast
-
-#=============================================================================
-# Target rules for targets named midifile
-
-# Build rule for target.
-midifile: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 midifile
-.PHONY : midifile
-
-# fast build rule for target.
-midifile/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/build
-.PHONY : midifile/fast
-
-#=============================================================================
-# Target rules for targets named tobinary
-
-# Build rule for target.
-tobinary: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tobinary
-.PHONY : tobinary
-
-# fast build rule for target.
-tobinary/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tobinary.dir/build.make CMakeFiles/tobinary.dir/build
-.PHONY : tobinary/fast
-
-#=============================================================================
-# Target rules for targets named tohex
-
-# Build rule for target.
-tohex: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tohex
-.PHONY : tohex
-
-# fast build rule for target.
-tohex/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tohex.dir/build.make CMakeFiles/tohex.dir/build
-.PHONY : tohex/fast
-
-#=============================================================================
-# Target rules for targets named midi2melody
-
-# Build rule for target.
-midi2melody: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 midi2melody
-.PHONY : midi2melody
-
-# fast build rule for target.
-midi2melody/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2melody.dir/build.make CMakeFiles/midi2melody.dir/build
-.PHONY : midi2melody/fast
-
-#=============================================================================
 # Target rules for targets named midi2binasc
 
 # Build rule for target.
@@ -345,17 +267,43 @@ textmidi/fast:
 .PHONY : textmidi/fast
 
 #=============================================================================
-# Target rules for targets named mid2svg
+# Target rules for targets named midifile
 
 # Build rule for target.
-mid2svg: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mid2svg
-.PHONY : mid2svg
+midifile: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 midifile
+.PHONY : midifile
 
 # fast build rule for target.
-mid2svg/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mid2svg.dir/build.make CMakeFiles/mid2svg.dir/build
-.PHONY : mid2svg/fast
+midifile/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/build
+.PHONY : midifile/fast
+
+#=============================================================================
+# Target rules for targets named midi2notes
+
+# Build rule for target.
+midi2notes: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 midi2notes
+.PHONY : midi2notes
+
+# fast build rule for target.
+midi2notes/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2notes.dir/build.make CMakeFiles/midi2notes.dir/build
+.PHONY : midi2notes/fast
+
+#=============================================================================
+# Target rules for targets named tobinary
+
+# Build rule for target.
+tobinary: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tobinary
+.PHONY : tobinary
+
+# fast build rule for target.
+tobinary/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tobinary.dir/build.make CMakeFiles/tobinary.dir/build
+.PHONY : tobinary/fast
 
 #=============================================================================
 # Target rules for targets named mid2mtb
@@ -369,6 +317,32 @@ mid2mtb: cmake_check_build_system
 mid2mtb/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mid2mtb.dir/build.make CMakeFiles/mid2mtb.dir/build
 .PHONY : mid2mtb/fast
+
+#=============================================================================
+# Target rules for targets named mid2svg
+
+# Build rule for target.
+mid2svg: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mid2svg
+.PHONY : mid2svg
+
+# fast build rule for target.
+mid2svg/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mid2svg.dir/build.make CMakeFiles/mid2svg.dir/build
+.PHONY : mid2svg/fast
+
+#=============================================================================
+# Target rules for targets named jazz
+
+# Build rule for target.
+jazz: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 jazz
+.PHONY : jazz
+
+# fast build rule for target.
+jazz/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/build
+.PHONY : jazz/fast
 
 #=============================================================================
 # Target rules for targets named midi2skini
@@ -434,6 +408,45 @@ createmidifile: cmake_check_build_system
 createmidifile/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/createmidifile.dir/build.make CMakeFiles/createmidifile.dir/build
 .PHONY : createmidifile/fast
+
+#=============================================================================
+# Target rules for targets named midi2text
+
+# Build rule for target.
+midi2text: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 midi2text
+.PHONY : midi2text
+
+# fast build rule for target.
+midi2text/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2text.dir/build.make CMakeFiles/midi2text.dir/build
+.PHONY : midi2text/fast
+
+#=============================================================================
+# Target rules for targets named midi2melody
+
+# Build rule for target.
+midi2melody: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 midi2melody
+.PHONY : midi2melody
+
+# fast build rule for target.
+midi2melody/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2melody.dir/build.make CMakeFiles/midi2melody.dir/build
+.PHONY : midi2melody/fast
+
+#=============================================================================
+# Target rules for targets named tohex
+
+# Build rule for target.
+tohex: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tohex
+.PHONY : tohex
+
+# fast build rule for target.
+tohex/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tohex.dir/build.make CMakeFiles/tohex.dir/build
+.PHONY : tohex/fast
 
 #=============================================================================
 # Target rules for targets named midimixup
@@ -642,19 +655,6 @@ vlv: cmake_check_build_system
 vlv/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/vlv.dir/build.make CMakeFiles/vlv.dir/build
 .PHONY : vlv/fast
-
-#=============================================================================
-# Target rules for targets named jazz
-
-# Build rule for target.
-jazz: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 jazz
-.PHONY : jazz
-
-# fast build rule for target.
-jazz/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/build
-.PHONY : jazz/fast
 
 Binasc.o: Binasc.cpp.o
 

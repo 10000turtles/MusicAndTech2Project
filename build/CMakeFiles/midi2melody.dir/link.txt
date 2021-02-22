@@ -1,1 +1,1 @@
-/usr/bin/c++  -g -Wall -Wextra -pedantic  -lstdc++fs -rdynamic CMakeFiles/midi2melody.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/midi2melody.cpp.o -o midi2melody  libmidifile.a -lstdc++fs 
+/usr/bin/c++  -g -Wall -Wextra -pedantic  -lstdc++fs -rdynamic CMakeFiles/midi2melody.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/midi2melody.cpp.o -o midi2melody  libmidifile.a 
