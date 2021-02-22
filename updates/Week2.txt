@@ -1,4 +1,20 @@
 Week 2 - The Parts of the Project
 
 This week was also a fairly slow week however some very crucial and often arduous steps were taken to start work on the project.
-Sp
+I downloaded the midifile repository and integrated it into my project. There were some finer details that I want to point out.
+First is that the cmake file has to be updated with any header files or executables to run the program. Specifically since I added
+test.cpp and jazzMachine.cpp I had to add the lines,
+add_executable(test ../src/test.cpp)
+add_executable(jazz ../src/jazzMachine.cpp)
+
+Another task I had to complete was changing all the paths of all the cpp and header files in midifile. 
+The reason I had to do this is because my filesystem is different from the original midifile system and so every include statement had to be changed.
+One example would be,
+
+#include "MidiFile.h" ---> #include "../src/inc/MidiFile.h"
+
+The last thing I did was record 10 solo excerpts from one of my songs in ableton. 
+I then exported those songs to MIDI and put them in my project under the folder FSharpMinor.
+This is the sample data that I will use to generate solos for now and hopefully, I can record much more music of my own over the course of the semester.
+
+There was no tangible result out of this week, however there will be some results next week.
