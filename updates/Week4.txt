@@ -1,0 +1,13 @@
+Week 4 - Rhythm and Snarky Puppy
+
+This week I included rhythmic variation into the jazz machine. It was implimented in the same fashion as the pitches using the markov model. 
+However, to make the outcome paletteable, I had to use a couple "cheats". First I quantized all of my data to fit within the 16th note grid. 
+Then, I had the jazz machine use the intervals between the pitches to populate the markov table. For pitches with more than a quarter note, 
+I would add a quarter note to the table and rests to account for however long the pause was after. So, if there was a note followed by a pause
+the length of 15 quarter rests, the system would add 1 quarter rests and 7 full rests into the table. This has the effect of rests compounding 
+on eachother, creating pauses at about the same frequency and length as the ones I input. As well, this means the exact length of the pauses 
+isn't copied, just the feel of the pauses. 
+
+As well, to illustrate this advancment in a good light, I decided to use a song by Snarky Puppy called Ready Wednesday. This song, in my opinion,
+works really well with straight 16th note solos with some variation. So, along with the coding this week, I also have a new ableton file and song.
+The ableton file and the song are both in the creations folder for this week. 
