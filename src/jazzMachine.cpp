@@ -401,7 +401,7 @@ void GenerateNewPiece(string in, string out, map<vector<int>, map<int, int>> pMa
         }
       }
       s.sortTracks();
-      s.write(out + "/Rhythm" + to_string(q) + ".mid");
+      s.write(out + "/RootAndRhythm" + to_string(q) + ".mid");
     }
   }
   else
