@@ -6,17 +6,3 @@
 
 #IncludeRegexTransform: 
 
-/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/tohex.cpp
-stdlib.h
--
-stdio.h
--
-ctype.h
--
-string.h
--
-iostream
--
-iomanip
--
-

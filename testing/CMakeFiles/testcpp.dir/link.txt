@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/testcpp.dir/test.cpp.o -o testcpp  -lstdc++fs 

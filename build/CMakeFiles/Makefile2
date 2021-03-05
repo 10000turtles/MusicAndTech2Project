@@ -54,10 +54,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /snap/cmake/793/bin/cmake
+CMAKE_COMMAND = /snap/cmake/805/bin/cmake
 
 # The command to remove a file.
-RM = /snap/cmake/793/bin/cmake -E rm -f
+RM = /snap/cmake/805/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -73,26 +73,25 @@ CMAKE_BINARY_DIR = /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Pro
 
 # The main recursive "all" target.
 all: CMakeFiles/midi2beep.dir/all
+all: CMakeFiles/midi2text.dir/all
+all: CMakeFiles/midi2notes.dir/all
+all: CMakeFiles/midifile.dir/all
+all: CMakeFiles/tobinary.dir/all
+all: CMakeFiles/tohex.dir/all
+all: CMakeFiles/midi2melody.dir/all
 all: CMakeFiles/midi2binasc.dir/all
 all: CMakeFiles/mid2mat.dir/all
 all: CMakeFiles/retick.dir/all
 all: CMakeFiles/durations.dir/all
 all: CMakeFiles/createmidifile2.dir/all
 all: CMakeFiles/textmidi.dir/all
-all: CMakeFiles/midifile.dir/all
-all: CMakeFiles/midi2notes.dir/all
-all: CMakeFiles/tobinary.dir/all
-all: CMakeFiles/mid2mtb.dir/all
 all: CMakeFiles/mid2svg.dir/all
-all: CMakeFiles/jazz.dir/all
+all: CMakeFiles/mid2mtb.dir/all
 all: CMakeFiles/midi2skini.dir/all
 all: CMakeFiles/drumtab.dir/all
 all: CMakeFiles/asciimidi.dir/all
 all: CMakeFiles/binasc.dir/all
 all: CMakeFiles/createmidifile.dir/all
-all: CMakeFiles/midi2text.dir/all
-all: CMakeFiles/midi2melody.dir/all
-all: CMakeFiles/tohex.dir/all
 all: CMakeFiles/midimixup.dir/all
 all: CMakeFiles/miditime.dir/all
 all: CMakeFiles/sysextest.dir/all
@@ -109,6 +108,7 @@ all: CMakeFiles/stretch.dir/all
 all: CMakeFiles/midicater.dir/all
 all: CMakeFiles/tobin.dir/all
 all: CMakeFiles/vlv.dir/all
+all: CMakeFiles/jazz.dir/all
 
 .PHONY : all
 
@@ -119,26 +119,25 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/midi2beep.dir/clean
+clean: CMakeFiles/midi2text.dir/clean
+clean: CMakeFiles/midi2notes.dir/clean
+clean: CMakeFiles/midifile.dir/clean
+clean: CMakeFiles/tobinary.dir/clean
+clean: CMakeFiles/tohex.dir/clean
+clean: CMakeFiles/midi2melody.dir/clean
 clean: CMakeFiles/midi2binasc.dir/clean
 clean: CMakeFiles/mid2mat.dir/clean
 clean: CMakeFiles/retick.dir/clean
 clean: CMakeFiles/durations.dir/clean
 clean: CMakeFiles/createmidifile2.dir/clean
 clean: CMakeFiles/textmidi.dir/clean
-clean: CMakeFiles/midifile.dir/clean
-clean: CMakeFiles/midi2notes.dir/clean
-clean: CMakeFiles/tobinary.dir/clean
-clean: CMakeFiles/mid2mtb.dir/clean
 clean: CMakeFiles/mid2svg.dir/clean
-clean: CMakeFiles/jazz.dir/clean
+clean: CMakeFiles/mid2mtb.dir/clean
 clean: CMakeFiles/midi2skini.dir/clean
 clean: CMakeFiles/drumtab.dir/clean
 clean: CMakeFiles/asciimidi.dir/clean
 clean: CMakeFiles/binasc.dir/clean
 clean: CMakeFiles/createmidifile.dir/clean
-clean: CMakeFiles/midi2text.dir/clean
-clean: CMakeFiles/midi2melody.dir/clean
-clean: CMakeFiles/tohex.dir/clean
 clean: CMakeFiles/midimixup.dir/clean
 clean: CMakeFiles/miditime.dir/clean
 clean: CMakeFiles/sysextest.dir/clean
@@ -155,6 +154,7 @@ clean: CMakeFiles/stretch.dir/clean
 clean: CMakeFiles/midicater.dir/clean
 clean: CMakeFiles/tobin.dir/clean
 clean: CMakeFiles/vlv.dir/clean
+clean: CMakeFiles/jazz.dir/clean
 
 .PHONY : clean
 
@@ -184,6 +184,168 @@ midi2beep: CMakeFiles/midi2beep.dir/rule
 CMakeFiles/midi2beep.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2beep.dir/build.make CMakeFiles/midi2beep.dir/clean
 .PHONY : CMakeFiles/midi2beep.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/midi2text.dir
+
+# All Build rule for target.
+CMakeFiles/midi2text.dir/all: CMakeFiles/midifile.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2text.dir/build.make CMakeFiles/midi2text.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2text.dir/build.make CMakeFiles/midi2text.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=33,34 "Built target midi2text"
+.PHONY : CMakeFiles/midi2text.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/midi2text.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 9
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/midi2text.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
+.PHONY : CMakeFiles/midi2text.dir/rule
+
+# Convenience name for target.
+midi2text: CMakeFiles/midi2text.dir/rule
+
+.PHONY : midi2text
+
+# clean rule for target.
+CMakeFiles/midi2text.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2text.dir/build.make CMakeFiles/midi2text.dir/clean
+.PHONY : CMakeFiles/midi2text.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/midi2notes.dir
+
+# All Build rule for target.
+CMakeFiles/midi2notes.dir/all: CMakeFiles/midifile.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2notes.dir/build.make CMakeFiles/midi2notes.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2notes.dir/build.make CMakeFiles/midi2notes.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=29,30 "Built target midi2notes"
+.PHONY : CMakeFiles/midi2notes.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/midi2notes.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 9
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/midi2notes.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
+.PHONY : CMakeFiles/midi2notes.dir/rule
+
+# Convenience name for target.
+midi2notes: CMakeFiles/midi2notes.dir/rule
+
+.PHONY : midi2notes
+
+# clean rule for target.
+CMakeFiles/midi2notes.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2notes.dir/build.make CMakeFiles/midi2notes.dir/clean
+.PHONY : CMakeFiles/midi2notes.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/midifile.dir
+
+# All Build rule for target.
+CMakeFiles/midifile.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=37,38,39,40,41,42,43 "Built target midifile"
+.PHONY : CMakeFiles/midifile.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/midifile.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 7
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/midifile.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
+.PHONY : CMakeFiles/midifile.dir/rule
+
+# Convenience name for target.
+midifile: CMakeFiles/midifile.dir/rule
+
+.PHONY : midifile
+
+# clean rule for target.
+CMakeFiles/midifile.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/clean
+.PHONY : CMakeFiles/midifile.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/tobinary.dir
+
+# All Build rule for target.
+CMakeFiles/tobinary.dir/all: CMakeFiles/midifile.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tobinary.dir/build.make CMakeFiles/tobinary.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tobinary.dir/build.make CMakeFiles/tobinary.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=70,71 "Built target tobinary"
+.PHONY : CMakeFiles/tobinary.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/tobinary.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 9
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tobinary.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
+.PHONY : CMakeFiles/tobinary.dir/rule
+
+# Convenience name for target.
+tobinary: CMakeFiles/tobinary.dir/rule
+
+.PHONY : tobinary
+
+# clean rule for target.
+CMakeFiles/tobinary.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tobinary.dir/build.make CMakeFiles/tobinary.dir/clean
+.PHONY : CMakeFiles/tobinary.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/tohex.dir
+
+# All Build rule for target.
+CMakeFiles/tohex.dir/all: CMakeFiles/midifile.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tohex.dir/build.make CMakeFiles/tohex.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tohex.dir/build.make CMakeFiles/tohex.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=74,75 "Built target tohex"
+.PHONY : CMakeFiles/tohex.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/tohex.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 9
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tohex.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
+.PHONY : CMakeFiles/tohex.dir/rule
+
+# Convenience name for target.
+tohex: CMakeFiles/tohex.dir/rule
+
+.PHONY : tohex
+
+# clean rule for target.
+CMakeFiles/tohex.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tohex.dir/build.make CMakeFiles/tohex.dir/clean
+.PHONY : CMakeFiles/tohex.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/midi2melody.dir
+
+# All Build rule for target.
+CMakeFiles/midi2melody.dir/all: CMakeFiles/midifile.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2melody.dir/build.make CMakeFiles/midi2melody.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2melody.dir/build.make CMakeFiles/midi2melody.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=27,28 "Built target midi2melody"
+.PHONY : CMakeFiles/midi2melody.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/midi2melody.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 9
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/midi2melody.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
+.PHONY : CMakeFiles/midi2melody.dir/rule
+
+# Convenience name for target.
+midi2melody: CMakeFiles/midi2melody.dir/rule
+
+.PHONY : midi2melody
+
+# clean rule for target.
+CMakeFiles/midi2melody.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2melody.dir/build.make CMakeFiles/midi2melody.dir/clean
+.PHONY : CMakeFiles/midi2melody.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/midi2binasc.dir
@@ -348,114 +510,6 @@ CMakeFiles/textmidi.dir/clean:
 .PHONY : CMakeFiles/textmidi.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/midifile.dir
-
-# All Build rule for target.
-CMakeFiles/midifile.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=37,38,39,40,41,42,43 "Built target midifile"
-.PHONY : CMakeFiles/midifile.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/midifile.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 7
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/midifile.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
-.PHONY : CMakeFiles/midifile.dir/rule
-
-# Convenience name for target.
-midifile: CMakeFiles/midifile.dir/rule
-
-.PHONY : midifile
-
-# clean rule for target.
-CMakeFiles/midifile.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/clean
-.PHONY : CMakeFiles/midifile.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/midi2notes.dir
-
-# All Build rule for target.
-CMakeFiles/midi2notes.dir/all: CMakeFiles/midifile.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2notes.dir/build.make CMakeFiles/midi2notes.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2notes.dir/build.make CMakeFiles/midi2notes.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=29,30 "Built target midi2notes"
-.PHONY : CMakeFiles/midi2notes.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/midi2notes.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 9
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/midi2notes.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
-.PHONY : CMakeFiles/midi2notes.dir/rule
-
-# Convenience name for target.
-midi2notes: CMakeFiles/midi2notes.dir/rule
-
-.PHONY : midi2notes
-
-# clean rule for target.
-CMakeFiles/midi2notes.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2notes.dir/build.make CMakeFiles/midi2notes.dir/clean
-.PHONY : CMakeFiles/midi2notes.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/tobinary.dir
-
-# All Build rule for target.
-CMakeFiles/tobinary.dir/all: CMakeFiles/midifile.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tobinary.dir/build.make CMakeFiles/tobinary.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tobinary.dir/build.make CMakeFiles/tobinary.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=70,71 "Built target tobinary"
-.PHONY : CMakeFiles/tobinary.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/tobinary.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 9
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tobinary.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
-.PHONY : CMakeFiles/tobinary.dir/rule
-
-# Convenience name for target.
-tobinary: CMakeFiles/tobinary.dir/rule
-
-.PHONY : tobinary
-
-# clean rule for target.
-CMakeFiles/tobinary.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tobinary.dir/build.make CMakeFiles/tobinary.dir/clean
-.PHONY : CMakeFiles/tobinary.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/mid2mtb.dir
-
-# All Build rule for target.
-CMakeFiles/mid2mtb.dir/all: CMakeFiles/midifile.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mid2mtb.dir/build.make CMakeFiles/mid2mtb.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mid2mtb.dir/build.make CMakeFiles/mid2mtb.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=19,20 "Built target mid2mtb"
-.PHONY : CMakeFiles/mid2mtb.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/mid2mtb.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 9
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/mid2mtb.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
-.PHONY : CMakeFiles/mid2mtb.dir/rule
-
-# Convenience name for target.
-mid2mtb: CMakeFiles/mid2mtb.dir/rule
-
-.PHONY : mid2mtb
-
-# clean rule for target.
-CMakeFiles/mid2mtb.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/mid2mtb.dir/build.make CMakeFiles/mid2mtb.dir/clean
-.PHONY : CMakeFiles/mid2mtb.dir/clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/mid2svg.dir
 
 # All Build rule for target.
@@ -483,31 +537,31 @@ CMakeFiles/mid2svg.dir/clean:
 .PHONY : CMakeFiles/mid2svg.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/jazz.dir
+# Target rules for target CMakeFiles/mid2mtb.dir
 
 # All Build rule for target.
-CMakeFiles/jazz.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=15,16 "Built target jazz"
-.PHONY : CMakeFiles/jazz.dir/all
+CMakeFiles/mid2mtb.dir/all: CMakeFiles/midifile.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mid2mtb.dir/build.make CMakeFiles/mid2mtb.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mid2mtb.dir/build.make CMakeFiles/mid2mtb.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=19,20 "Built target mid2mtb"
+.PHONY : CMakeFiles/mid2mtb.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/jazz.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/jazz.dir/all
+CMakeFiles/mid2mtb.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 9
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/mid2mtb.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
-.PHONY : CMakeFiles/jazz.dir/rule
+.PHONY : CMakeFiles/mid2mtb.dir/rule
 
 # Convenience name for target.
-jazz: CMakeFiles/jazz.dir/rule
+mid2mtb: CMakeFiles/mid2mtb.dir/rule
 
-.PHONY : jazz
+.PHONY : mid2mtb
 
 # clean rule for target.
-CMakeFiles/jazz.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/clean
-.PHONY : CMakeFiles/jazz.dir/clean
+CMakeFiles/mid2mtb.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mid2mtb.dir/build.make CMakeFiles/mid2mtb.dir/clean
+.PHONY : CMakeFiles/mid2mtb.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/midi2skini.dir
@@ -643,87 +697,6 @@ createmidifile: CMakeFiles/createmidifile.dir/rule
 CMakeFiles/createmidifile.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/createmidifile.dir/build.make CMakeFiles/createmidifile.dir/clean
 .PHONY : CMakeFiles/createmidifile.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/midi2text.dir
-
-# All Build rule for target.
-CMakeFiles/midi2text.dir/all: CMakeFiles/midifile.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2text.dir/build.make CMakeFiles/midi2text.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2text.dir/build.make CMakeFiles/midi2text.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=33,34 "Built target midi2text"
-.PHONY : CMakeFiles/midi2text.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/midi2text.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 9
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/midi2text.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
-.PHONY : CMakeFiles/midi2text.dir/rule
-
-# Convenience name for target.
-midi2text: CMakeFiles/midi2text.dir/rule
-
-.PHONY : midi2text
-
-# clean rule for target.
-CMakeFiles/midi2text.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2text.dir/build.make CMakeFiles/midi2text.dir/clean
-.PHONY : CMakeFiles/midi2text.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/midi2melody.dir
-
-# All Build rule for target.
-CMakeFiles/midi2melody.dir/all: CMakeFiles/midifile.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2melody.dir/build.make CMakeFiles/midi2melody.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2melody.dir/build.make CMakeFiles/midi2melody.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=27,28 "Built target midi2melody"
-.PHONY : CMakeFiles/midi2melody.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/midi2melody.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 9
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/midi2melody.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
-.PHONY : CMakeFiles/midi2melody.dir/rule
-
-# Convenience name for target.
-midi2melody: CMakeFiles/midi2melody.dir/rule
-
-.PHONY : midi2melody
-
-# clean rule for target.
-CMakeFiles/midi2melody.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2melody.dir/build.make CMakeFiles/midi2melody.dir/clean
-.PHONY : CMakeFiles/midi2melody.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/tohex.dir
-
-# All Build rule for target.
-CMakeFiles/tohex.dir/all: CMakeFiles/midifile.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tohex.dir/build.make CMakeFiles/tohex.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tohex.dir/build.make CMakeFiles/tohex.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=74,75 "Built target tohex"
-.PHONY : CMakeFiles/tohex.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/tohex.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 9
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tohex.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
-.PHONY : CMakeFiles/tohex.dir/rule
-
-# Convenience name for target.
-tohex: CMakeFiles/tohex.dir/rule
-
-.PHONY : tohex
-
-# clean rule for target.
-CMakeFiles/tohex.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tohex.dir/build.make CMakeFiles/tohex.dir/clean
-.PHONY : CMakeFiles/tohex.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/midimixup.dir
@@ -1156,6 +1129,33 @@ vlv: CMakeFiles/vlv.dir/rule
 CMakeFiles/vlv.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/vlv.dir/build.make CMakeFiles/vlv.dir/clean
 .PHONY : CMakeFiles/vlv.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/jazz.dir
+
+# All Build rule for target.
+CMakeFiles/jazz.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=15,16 "Built target jazz"
+.PHONY : CMakeFiles/jazz.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/jazz.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/jazz.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles 0
+.PHONY : CMakeFiles/jazz.dir/rule
+
+# Convenience name for target.
+jazz: CMakeFiles/jazz.dir/rule
+
+.PHONY : jazz
+
+# clean rule for target.
+CMakeFiles/jazz.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/clean
+.PHONY : CMakeFiles/jazz.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

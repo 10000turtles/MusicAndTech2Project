@@ -1,0 +1,3 @@
+/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/testing/CMakeFiles/rebuild_cache.dir
+/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/testing/CMakeFiles/testcpp.dir
+/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/testing/CMakeFiles/edit_cache.dir

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1.1)
+cmake_minimum_required(VERSION 3.7)
 
 project(midifile C CXX)
 set(CMAKE_CXX_STANDARD 17)
@@ -18,29 +18,28 @@ check_include_files(sys/io.h HAVE_SYS_IO_H)
 ## Operating-system specific settings:
 ##
 
-if(APPLE)
-    set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "Minimum OS X deployment version")
-endif()
+# if(APPLE)
+#     set(CMAKE_OSX_DEPLOYMENT_TARGET "10.9" CACHE STRING "Minimum OS X deployment version")
+# endif()
 
-if(MSVC)
-    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+# if(MSVC)
+#     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 
-    option(STATIC_CRT "Use static CRT libraries" OFF)
+#     option(STATIC_CRT "Use static CRT libraries" OFF)
 
-    # Rewrite command line flags to use /MT if necessary
-    if(STATIC_CRT)
-        foreach(flag_var
-                CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
-                CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
-            if(${flag_var} MATCHES "/MD")
-                string(REGEX REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
-            endif(${flag_var} MATCHES "/MD")
-        endforeach(flag_var)
-    endif()
-endif()
+#     # Rewrite command line flags to use /MT if necessary
+#     if(STATIC_CRT)
+#         foreach(flag_var
+#                 CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
+#                 CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
+#             if(${flag_var} MATCHES "/MD")
+#                 string(REGEX REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
+#             endif(${flag_var} MATCHES "/MD")
+#         endforeach(flag_var)
+#     endif()
+# endif()
 
 
-add_executable(jazz ../src/jazzMachine.cpp)
 SET(GCC_COVERAGE_COMPILE_FLAGS "-g -Wall -Wextra -pedantic")
 SET(GCC_COVERAGE_LINK_FLAGS    "-lstdc++fs")
 
@@ -123,8 +122,9 @@ add_executable(tohex ../tools/tohex.cpp)
 add_executable(type0 ../tools/type0.cpp)
 add_executable(vlv ../tools/vlv.cpp)
 add_executable(test ../src/test.cpp)
+add_executable(jazz ../src/jazzMachine.cpp)
 
-
+target_link_libraries(jazz stdc++fs)
 target_link_libraries(80off midifile)
 target_link_libraries(asciimidi midifile)
 target_link_libraries(binasc midifile)
@@ -158,7 +158,7 @@ target_link_libraries(todec midifile)
 target_link_libraries(tohex midifile)
 target_link_libraries(type0 midifile)
 target_link_libraries(vlv midifile)
-#target_link_libraries(stdc++fs midifile)
+
 
 if(HAVE_UNISTD_H AND HAVE_SYS_IO_H)
     add_executable(midi2beep ../tools/midi2beep.cpp)
@@ -188,3 +188,4 @@ install(TARGETS midifile
 )
 
 install(FILES ${HDRS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/midifile)
+
