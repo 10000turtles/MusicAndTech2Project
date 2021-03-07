@@ -45,7 +45,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/midi2beep.dir/DependInfo.cmake"
   "CMakeFiles/midi2text.dir/DependInfo.cmake"
   "CMakeFiles/midi2notes.dir/DependInfo.cmake"
   "CMakeFiles/midifile.dir/DependInfo.cmake"
@@ -69,9 +68,9 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/miditime.dir/DependInfo.cmake"
   "CMakeFiles/sysextest.dir/DependInfo.cmake"
   "CMakeFiles/todec.dir/DependInfo.cmake"
+  "CMakeFiles/midi2beep.dir/DependInfo.cmake"
   "CMakeFiles/perfid.dir/DependInfo.cmake"
   "CMakeFiles/toascii.dir/DependInfo.cmake"
-  "CMakeFiles/test.dir/DependInfo.cmake"
   "CMakeFiles/type0.dir/DependInfo.cmake"
   "CMakeFiles/shutak.dir/DependInfo.cmake"
   "CMakeFiles/80off.dir/DependInfo.cmake"

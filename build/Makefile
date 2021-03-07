@@ -176,19 +176,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named midi2beep
-
-# Build rule for target.
-midi2beep: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 midi2beep
-.PHONY : midi2beep
-
-# fast build rule for target.
-midi2beep/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2beep.dir/build.make CMakeFiles/midi2beep.dir/build
-.PHONY : midi2beep/fast
-
-#=============================================================================
 # Target rules for targets named midi2text
 
 # Build rule for target.
@@ -488,6 +475,19 @@ todec/fast:
 .PHONY : todec/fast
 
 #=============================================================================
+# Target rules for targets named midi2beep
+
+# Build rule for target.
+midi2beep: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 midi2beep
+.PHONY : midi2beep
+
+# fast build rule for target.
+midi2beep/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midi2beep.dir/build.make CMakeFiles/midi2beep.dir/build
+.PHONY : midi2beep/fast
+
+#=============================================================================
 # Target rules for targets named perfid
 
 # Build rule for target.
@@ -512,19 +512,6 @@ toascii: cmake_check_build_system
 toascii/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/toascii.dir/build.make CMakeFiles/toascii.dir/build
 .PHONY : toascii/fast
-
-#=============================================================================
-# Target rules for targets named test
-
-# Build rule for target.
-test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test
-.PHONY : test
-
-# fast build rule for target.
-test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
-.PHONY : test/fast
 
 #=============================================================================
 # Target rules for targets named type0
@@ -1763,33 +1750,6 @@ jazzMachine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/jazzMachine.cpp.s
 .PHONY : jazzMachine.cpp.s
 
-test.o: test.cpp.o
-
-.PHONY : test.o
-
-# target to build an object file
-test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/test.cpp.o
-.PHONY : test.cpp.o
-
-test.i: test.cpp.i
-
-.PHONY : test.i
-
-# target to preprocess a source file
-test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/test.cpp.i
-.PHONY : test.cpp.i
-
-test.s: test.cpp.s
-
-.PHONY : test.s
-
-# target to generate assembly for a file
-test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/test.cpp.s
-.PHONY : test.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1829,7 +1789,6 @@ help:
 	@echo "... smfdur"
 	@echo "... stretch"
 	@echo "... sysextest"
-	@echo "... test"
 	@echo "... text2midi"
 	@echo "... textmidi"
 	@echo "... toascii"
@@ -1962,9 +1921,6 @@ help:
 	@echo "... jazzMachine.o"
 	@echo "... jazzMachine.i"
 	@echo "... jazzMachine.s"
-	@echo "... test.o"
-	@echo "... test.i"
-	@echo "... test.s"
 .PHONY : help
 
 

@@ -121,7 +121,6 @@ add_executable(todec ../tools/todec.cpp)
 add_executable(tohex ../tools/tohex.cpp)
 add_executable(type0 ../tools/type0.cpp)
 add_executable(vlv ../tools/vlv.cpp)
-add_executable(test ../src/test.cpp)
 add_executable(jazz ../src/jazzMachine.cpp)
 
 target_link_libraries(jazz stdc++fs)

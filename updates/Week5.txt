@@ -1,0 +1,29 @@
+Week 5 - 1 Step Forward, 2 Steps Back, 1 Step Forward Again
+
+Hi. This week was a fairly slow week, mostly because what I did code, didn't work!
+I tried to implement a scheme that would factor in the root note of the chord into
+solo generation. However the way I went about this was not the best. The data structure
+I used was exactly the same and that was the problem. All I did is cram one extra note
+into the previousNotes array that was the root note,
+
+n = pitch order;
+
+----------------------------------------    ---------------------------------
+| root | prevNote_1 | ... | prevNote_n | -> | Map of new note Probabilities |
+----------------------------------------    ---------------------------------
+
+However, the data structure I think would work better would be,
+
+--------     / ---------------------------------    --------------------------------- \
+| root | -> |  | prevNote_1 | ... | prevNote_n | -> | Map of new note Probabilities |  |
+--------     \ ---------------------------------    --------------------------------- /
+
+The first way of looking at it is a total hack. It tries to cram a 6 person family into
+a one bedroom apartment when really they should just get a larger house. As well, this new
+data structure works even if there is no root note! Simply set the root to always be -1 and
+bish bash bosh, bobs ur uncle, its done.
+
+The first step forward was the coding, the two steps back were it not working, so what was
+the extra step forward? Well, I finally got my cmake file to work with filesystem and MidiFile.
+Now everything SHOULD be properly linked and hopefully be able to run on machines that aren't
+mine with few to no issues.
