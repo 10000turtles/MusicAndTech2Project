@@ -1,0 +1,30 @@
+Week 6 - My harmony is sick!, but so am I
+
+This week was all about getting the solos generated to match up with a given root note. I 
+did this to get rid of a bit of the crunchy nature of some of the solos generated and make 
+anything generated sound less "out-of-tune". This works especially well in the piece I arranged
+for this week, "Never in your sun" by Stevie Wonder. There are multiple chord changes and for 
+most of the generated solos it sounds fairly in tune throughout the whole solo. You can check 
+out ones that I thought were good in the products folder for week 6.
+
+The scheme I used to factor in the root note was simple, make a markov chain for each root note. 
+There is an obvious downside to this which is that it acts about the same as adding another order 
+to the markov model. There is less data to go around in each section which means all of the symptoms 
+of lower level markov chains start to appear. 
+
+For next week, I have a couple other, smaller, additions I think should be made,
+
+1. A config file for running the executable file. 
+  This would change my horrendously long (and soon to get longer) executable commands,
+  ./jazz -song NIYS -rhythm -root -samples 6 -pitchOrder 2 -rhythmOrder 3 -newSongs 1
+  into this (and it won't get longer),
+  ./jazz config.txt
+  
+2. Making sure that the executable works on other machines. 
+  Hopefully I can test this out because portability is everything nowadays. As well it would open 
+  the door to spend a week or two making a GUI for this project so anyone could use it in the future.
+  
+3. Weighting the random elements to make better leading tones.
+  Right now, as the program is, when there are no possible notes to generate, it picks an entry from the
+  table at random and continues from there. The problem is that this happens almost every time a chord 
+  changes. Therefore, there should be some weighting/parameters to determine how far a jump is too far.
