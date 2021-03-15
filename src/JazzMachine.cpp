@@ -365,31 +365,6 @@ int main(int argc, char** argv)
 {
   Args* markov_data = new Args(string(argv[1]));
 
-
-  filesystem::directory_iterator entry;
-  if (markov_data->song != string(""))
-  {
-    entry = fs::directory_iterator(markov_data->readPath + markov_data->song);
-  }
-  else
-  {
-    cout << "Error: No song name passed" << endl;
-  }
-  if (entry == end(entry))
-  {
-    cout << "Error: No songs in folder/no folder" << endl;
-  }
-  if (!markov_data->useSamples)
-  {
-    int i = 0;
-    while (entry != end(entry))
-    {
-      entry++;
-      i++;
-    }
-    markov_data->samples = i;
-  }
-
   MidiFile* m = new MidiFile[markov_data->samples];
 
   PitchMap  markovPitchMap;

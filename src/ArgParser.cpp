@@ -1,3 +1,4 @@
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -80,6 +81,29 @@ class Args
         f >> temp;
         voiceLeadingRange = stoi(temp);
       }
+    }
+    filesystem::directory_iterator entry;
+    if (song != string(""))
+    {
+      entry = filesystem::directory_iterator(readPath + song);
+    }
+    else
+    {
+      cout << "Error: No song name passed" << endl;
+    }
+    if (entry == end(entry))
+    {
+      cout << "Error: No songs in folder/no folder" << endl;
+    }
+    if (!useSamples)
+    {
+      int i = 0;
+      while (entry != end(entry))
+      {
+        entry++;
+        i++;
+      }
+      samples = i;
     }
   }
 };
