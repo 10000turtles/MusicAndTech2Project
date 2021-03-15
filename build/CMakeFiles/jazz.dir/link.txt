@@ -1,1 +1,1 @@
-/usr/bin/c++  -g -Wall -Wextra -pedantic  -lstdc++fs CMakeFiles/jazz.dir/jazzMachine.cpp.o -o jazz  -lstdc++fs 
+/usr/bin/c++  -g -Wall -Wextra -pedantic  -lstdc++fs CMakeFiles/jazz.dir/JazzMachine.cpp.o -o jazz  -lstdc++fs 

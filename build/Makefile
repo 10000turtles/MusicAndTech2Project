@@ -643,6 +643,33 @@ jazz/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/build
 .PHONY : jazz/fast
 
+ArgParser.o: ArgParser.cpp.o
+
+.PHONY : ArgParser.o
+
+# target to build an object file
+ArgParser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/ArgParser.cpp.o
+.PHONY : ArgParser.cpp.o
+
+ArgParser.i: ArgParser.cpp.i
+
+.PHONY : ArgParser.i
+
+# target to preprocess a source file
+ArgParser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/ArgParser.cpp.i
+.PHONY : ArgParser.cpp.i
+
+ArgParser.s: ArgParser.cpp.s
+
+.PHONY : ArgParser.s
+
+# target to generate assembly for a file
+ArgParser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/ArgParser.cpp.s
+.PHONY : ArgParser.cpp.s
+
 Binasc.o: Binasc.cpp.o
 
 .PHONY : Binasc.o
@@ -669,6 +696,33 @@ Binasc.s: Binasc.cpp.s
 Binasc.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/Binasc.cpp.s
 .PHONY : Binasc.cpp.s
+
+JazzMachine.o: JazzMachine.cpp.o
+
+.PHONY : JazzMachine.o
+
+# target to build an object file
+JazzMachine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/JazzMachine.cpp.o
+.PHONY : JazzMachine.cpp.o
+
+JazzMachine.i: JazzMachine.cpp.i
+
+.PHONY : JazzMachine.i
+
+# target to preprocess a source file
+JazzMachine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/JazzMachine.cpp.i
+.PHONY : JazzMachine.cpp.i
+
+JazzMachine.s: JazzMachine.cpp.s
+
+.PHONY : JazzMachine.s
+
+# target to generate assembly for a file
+JazzMachine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/JazzMachine.cpp.s
+.PHONY : JazzMachine.cpp.s
 
 MidiEvent.o: MidiEvent.cpp.o
 
@@ -1723,33 +1777,6 @@ home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/vlv.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/vlv.dir/build.make CMakeFiles/vlv.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/vlv.cpp.s
 .PHONY : home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/vlv.cpp.s
 
-jazzMachine.o: jazzMachine.cpp.o
-
-.PHONY : jazzMachine.o
-
-# target to build an object file
-jazzMachine.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/jazzMachine.cpp.o
-.PHONY : jazzMachine.cpp.o
-
-jazzMachine.i: jazzMachine.cpp.i
-
-.PHONY : jazzMachine.i
-
-# target to preprocess a source file
-jazzMachine.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/jazzMachine.cpp.i
-.PHONY : jazzMachine.cpp.i
-
-jazzMachine.s: jazzMachine.cpp.s
-
-.PHONY : jazzMachine.s
-
-# target to generate assembly for a file
-jazzMachine.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/jazz.dir/build.make CMakeFiles/jazz.dir/jazzMachine.cpp.s
-.PHONY : jazzMachine.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1798,9 +1825,15 @@ help:
 	@echo "... tohex"
 	@echo "... type0"
 	@echo "... vlv"
+	@echo "... ArgParser.o"
+	@echo "... ArgParser.i"
+	@echo "... ArgParser.s"
 	@echo "... Binasc.o"
 	@echo "... Binasc.i"
 	@echo "... Binasc.s"
+	@echo "... JazzMachine.o"
+	@echo "... JazzMachine.i"
+	@echo "... JazzMachine.s"
 	@echo "... MidiEvent.o"
 	@echo "... MidiEvent.i"
 	@echo "... MidiEvent.s"
@@ -1918,9 +1951,6 @@ help:
 	@echo "... home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/vlv.o"
 	@echo "... home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/vlv.i"
 	@echo "... home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/vlv.s"
-	@echo "... jazzMachine.o"
-	@echo "... jazzMachine.i"
-	@echo "... jazzMachine.s"
 .PHONY : help
 
 

@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/ArgParser.cpp" "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles/midifile.dir/ArgParser.cpp.o"
   "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/Binasc.cpp" "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles/midifile.dir/Binasc.cpp.o"
   "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/MidiEvent.cpp" "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles/midifile.dir/MidiEvent.cpp.o"
   "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/MidiEventList.cpp" "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles/midifile.dir/MidiEventList.cpp.o"

@@ -76,27 +76,27 @@ include CMakeFiles/jazz.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/jazz.dir/flags.make
 
-CMakeFiles/jazz.dir/jazzMachine.cpp.o: CMakeFiles/jazz.dir/flags.make
-CMakeFiles/jazz.dir/jazzMachine.cpp.o: /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/jazzMachine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/jazz.dir/jazzMachine.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jazz.dir/jazzMachine.cpp.o -c /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/jazzMachine.cpp
+CMakeFiles/jazz.dir/JazzMachine.cpp.o: CMakeFiles/jazz.dir/flags.make
+CMakeFiles/jazz.dir/JazzMachine.cpp.o: /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/JazzMachine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/jazz.dir/JazzMachine.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/jazz.dir/JazzMachine.cpp.o -c /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/JazzMachine.cpp
 
-CMakeFiles/jazz.dir/jazzMachine.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jazz.dir/jazzMachine.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/jazzMachine.cpp > CMakeFiles/jazz.dir/jazzMachine.cpp.i
+CMakeFiles/jazz.dir/JazzMachine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jazz.dir/JazzMachine.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/JazzMachine.cpp > CMakeFiles/jazz.dir/JazzMachine.cpp.i
 
-CMakeFiles/jazz.dir/jazzMachine.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jazz.dir/jazzMachine.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/jazzMachine.cpp -o CMakeFiles/jazz.dir/jazzMachine.cpp.s
+CMakeFiles/jazz.dir/JazzMachine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jazz.dir/JazzMachine.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/JazzMachine.cpp -o CMakeFiles/jazz.dir/JazzMachine.cpp.s
 
 # Object files for target jazz
 jazz_OBJECTS = \
-"CMakeFiles/jazz.dir/jazzMachine.cpp.o"
+"CMakeFiles/jazz.dir/JazzMachine.cpp.o"
 
 # External object files for target jazz
 jazz_EXTERNAL_OBJECTS =
 
-jazz: CMakeFiles/jazz.dir/jazzMachine.cpp.o
+jazz: CMakeFiles/jazz.dir/JazzMachine.cpp.o
 jazz: CMakeFiles/jazz.dir/build.make
 jazz: CMakeFiles/jazz.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable jazz"

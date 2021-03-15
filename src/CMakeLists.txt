@@ -70,6 +70,7 @@ set(SRCS
     MidiEventList.cpp
     MidiFile.cpp
     MidiMessage.cpp
+    ArgParser.cpp
 )
 
 set(HDRS
@@ -121,7 +122,7 @@ add_executable(todec ../tools/todec.cpp)
 add_executable(tohex ../tools/tohex.cpp)
 add_executable(type0 ../tools/type0.cpp)
 add_executable(vlv ../tools/vlv.cpp)
-add_executable(jazz ../src/jazzMachine.cpp)
+add_executable(jazz ../src/JazzMachine.cpp)
 
 target_link_libraries(jazz stdc++fs)
 target_link_libraries(80off midifile)

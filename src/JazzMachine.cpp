@@ -1,13 +1,13 @@
 // g++ jazzMachine.cpp -lstdc++fs -o jazz
 // ./jazz -song NIYS -rhythm -root -samples 6 -pitchOrder 2 -rhythmOrder 3 -newSongs 1
 
+#include "ArgParser.cpp"
 #include "Binasc.cpp"
 #include "MidiEvent.cpp"
 #include "MidiEventList.cpp"
 #include "MidiFile.cpp"
 #include "MidiMessage.cpp"
 #include "Options.cpp"
-#include <experimental/filesystem>
 #include <filesystem>
 #include <iostream>
 #include <list>
@@ -244,7 +244,7 @@ T weightedRandomPick(map<T, int> m)
 }
 
 
-void GenerateNewPiece(string in, string out, PitchMap pMap, map<vector<double>, map<double, int>> rMap, int n, RootMap root_data)
+void GenerateNewPiece(string in, string out, PitchMap pMap, map<vector<double>, map<double, int>> rMap, int n, RootMap root_data, Args ar)
 {
   MidiFile                       t, s;
   filesystem::directory_iterator a = filesystem::directory_iterator(in);
@@ -282,8 +282,44 @@ void GenerateNewPiece(string in, string out, PitchMap pMap, map<vector<double>, 
       {
         item = pMap[root_data[rootCounter].second].begin();
 
-        std::advance(item, gen_rand_float() * (pMap[root_data[rootCounter].second].size()));
-        prevNotes = (*item).first;
+        if (ar.voiceLeadingRange == -1)
+        {
+          std::advance(item, gen_rand_float() * (pMap[root_data[rootCounter].second].size()));
+          prevNotes = (*item).first;
+        }
+        else
+        {
+          vector<vector<int>> possibleContinuations;
+          while (item != pMap[root_data[rootCounter].second].end())
+          {
+            if (abs((*item).first[(*item).first.size() - 1] - prevNotes[prevNotes.size() - 1]) <= ar.voiceLeadingRange)
+            {
+              if (!abs((*item).first[(*item).first.size() - 1] - prevNotes[prevNotes.size() - 1]) == 0)
+              {
+                possibleContinuations.push_back((*item).first);
+              }
+            }
+
+            item++;
+          }
+          if (possibleContinuations.size() == 0)
+          {
+            item = pMap[root_data[rootCounter].second].begin();
+            std::advance(item, gen_rand_float() * (pMap[root_data[rootCounter].second].size()));
+            prevNotes = (*item).first;
+          }
+          else
+          {
+            vector<vector<int>>::iterator newPick = possibleContinuations.begin();
+            advance(newPick, gen_rand_float() * possibleContinuations.size());
+            prevNotes = (*newPick);
+
+
+            s.addNoteOn(0, timeCounter, 0, prevNotes[prevNotes.size() - 1], 80);
+            s.addNoteOff(0, timeCounter + t.getAbsoluteTickTime(0.125), 0, prevNotes[prevNotes.size() - 1], 80);
+            timeCounter += t.getAbsoluteTickTime(0.125);  // Change this to add in rhythmic variation instead of a 16th note
+          }
+        }
       }
 
       if (rMap[prevRhythms].size() == 0)
@@ -327,61 +363,13 @@ void GenerateNewPiece(string in, string out, PitchMap pMap, map<vector<double>, 
 
 int main(int argc, char** argv)
 {
-  string readPath  = "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/midiSamples/";
-  string writePath = "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/creations/";
+  Args* markov_data = new Args(string(argv[1]));
 
-  string song = "";
 
-  bool rhythm     = false;
-  bool root       = false;
-  bool useSamples = false;
-
-  int samples;
-  int pitchLevels  = 1;
-  int rhythmLevels = 1;
-  int newSongs     = 1;
-
-  for (int i = 1; i < argc; i++)
-  {
-    if (argv[i] == string("-song"))
-    {
-      i++;
-      song = string(argv[i]);
-    }
-    if (argv[i] == string("-rhythm"))
-    {
-      rhythm = true;
-    }
-    if (argv[i] == string("-root"))
-    {
-      root = true;
-    }
-    if (argv[i] == string("-samples"))
-    {
-      i++;
-      samples    = stoi(argv[i]);
-      useSamples = true;
-    }
-    if (argv[i] == string("-pitchOrder"))
-    {
-      i++;
-      pitchLevels = stoi(argv[i]);
-    }
-    if (argv[i] == string("-rhythmOrder"))
-    {
-      i++;
-      rhythmLevels = stoi(argv[i]);
-    }
-    if (argv[i] == string("-newSongs"))
-    {
-      i++;
-      newSongs = stoi(argv[i]);
-    }
-  }
   filesystem::directory_iterator entry;
-  if (song != string(""))
+  if (markov_data->song != string(""))
   {
-    entry = fs::directory_iterator(readPath + song);
+    entry = fs::directory_iterator(markov_data->readPath + markov_data->song);
   }
   else
   {
@@ -391,7 +379,7 @@ int main(int argc, char** argv)
   {
     cout << "Error: No songs in folder/no folder" << endl;
   }
-  if (!useSamples)
+  if (!markov_data->useSamples)
   {
     int i = 0;
     while (entry != end(entry))
@@ -399,10 +387,10 @@ int main(int argc, char** argv)
       entry++;
       i++;
     }
-    samples = i;
+    markov_data->samples = i;
   }
 
-  MidiFile* m = new MidiFile[samples];
+  MidiFile* m = new MidiFile[markov_data->samples];
 
   PitchMap  markovPitchMap;
   RhythmMap markovRhythmMap;
@@ -410,9 +398,9 @@ int main(int argc, char** argv)
 
   root_data.push_back(make_pair(0.0, -1));
 
-  LoadPitchData(samples, pitchLevels, m, markovPitchMap, readPath + song, root_data);
-  LoadRhythmData(samples, rhythmLevels, m, markovRhythmMap, readPath + song);
-  GenerateNewPiece(readPath + song, writePath + song, markovPitchMap, markovRhythmMap, newSongs, root_data);
+  LoadPitchData(markov_data->samples, markov_data->pitchOrder, m, markovPitchMap, markov_data->readPath + markov_data->song, root_data);
+  LoadRhythmData(markov_data->samples, markov_data->rhythmOrder, m, markovRhythmMap, markov_data->readPath + markov_data->song);
+  GenerateNewPiece(markov_data->readPath + markov_data->song, markov_data->writePath + markov_data->song, markovPitchMap, markovRhythmMap, markov_data->newSamples, root_data, *markov_data);
 }
 
 /*

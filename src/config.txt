@@ -1,0 +1,12 @@
+-song ReadyWednesday
+
+-rhythm
+-root
+
+-pitchOrder 3
+-rhythmOrder 3
+-newSongs 10
+-voiceLeading 1
+
+-readPath /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/midiSamples/
+-writePath /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/creations/
