@@ -1,9 +1,6 @@
--song ReadyWednesday
+-song Licc
 
--rhythm
--root
-
--pitchOrder 3
+-pitchOrder 6
 -rhythmOrder 3
 -newSongs 10
 -voiceLeading 1

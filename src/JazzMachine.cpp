@@ -119,24 +119,26 @@ void LoadPitchData(int samples, int levels, MidiFile* m, PitchMap& mMap, string 
   }
 }
 
-void LoadPitchData(int samples, int levels, MidiFile* m, PitchMap& mMap, string path, RootMap& root_data)
+void LoadPitchData(int samples, int levels, MidiFile* m, PitchMap& mMap, string path, RootMap& root_data, Args ar)
 {
   MidiFile       rootFile;
   vector<int>    dataPitch;
   vector<double> dataTime;
   root_data.clear();
-
-  for (const auto& entry : filesystem::directory_iterator(path + "/Root_Note"))
+  if (ar.root)
   {
-    rootFile.read(entry.path());
-    for (int i = 3; i < rootFile.getEventCount(0); i++)
+    for (const auto& entry : filesystem::directory_iterator(path + "/Root_Note"))
     {
-      if (rootFile.getEvent(0, i).getP0() == 144)
+      rootFile.read(entry.path());
+      for (int i = 3; i < rootFile.getEventCount(0); i++)
       {
-        root_data.push_back(make_pair(rootFile.getTimeInSeconds(0, i), rootFile.getEvent(0, i).getP1()));
+        if (rootFile.getEvent(0, i).getP0() == 144)
+        {
+          root_data.push_back(make_pair(rootFile.getTimeInSeconds(0, i), rootFile.getEvent(0, i).getP1()));
+        }
       }
+      break;
     }
-    break;
   }
   int q = 0;
   for (const auto& entry : filesystem::directory_iterator(path))
@@ -164,9 +166,10 @@ void LoadPitchData(int samples, int levels, MidiFile* m, PitchMap& mMap, string 
 
     int rootCounter = 0;
 
-    for (int i = levels; i < dataPitch.size() - levels; i++)
+
+    for (int i = levels; i < dataPitch.size(); i++)
     {
-      while (rootCounter < root_data.size() && dataTime[i] > root_data[rootCounter + 1].first)
+      while ((rootCounter < ((int)root_data.size() - 1)) && dataTime[i] > root_data[rootCounter + 1].first)
       {
         rootCounter++;
       }
@@ -373,9 +376,12 @@ int main(int argc, char** argv)
 
   root_data.push_back(make_pair(0.0, -1));
 
-  LoadPitchData(markov_data->samples, markov_data->pitchOrder, m, markovPitchMap, markov_data->readPath + markov_data->song, root_data);
-  LoadRhythmData(markov_data->samples, markov_data->rhythmOrder, m, markovRhythmMap, markov_data->readPath + markov_data->song);
-  GenerateNewPiece(markov_data->readPath + markov_data->song, markov_data->writePath + markov_data->song, markovPitchMap, markovRhythmMap, markov_data->newSamples, root_data, *markov_data);
+
+  LoadPitchData(markov_data->samples, markov_data->pitchOrder, m, markovPitchMap, markov_data->readPath + markov_data->song, root_data, *markov_data);
+  PrintMap(markovPitchMap.begin()->second);
+
+  //LoadRhythmData(markov_data->samples, markov_data->rhythmOrder, m, markovRhythmMap, markov_data->readPath + markov_data->song);
+  //GenerateNewPiece(markov_data->readPath + markov_data->song, markov_data->writePath + markov_data->song, markovPitchMap, markovRhythmMap, markov_data->newSamples, root_data, *markov_data);
 }
 
 /*
