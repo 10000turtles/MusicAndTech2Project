@@ -1,9 +1,12 @@
--song Licc
+-song FSharpMinor
 
--pitchOrder 6
+-root
+-rhythm
+
+-pitchOrder 3
 -rhythmOrder 3
 -newSongs 10
--voiceLeading 1
+-voiceLeading 4
 
 -readPath /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/midiSamples/
 -writePath /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/creations/

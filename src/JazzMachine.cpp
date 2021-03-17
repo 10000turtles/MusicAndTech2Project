@@ -380,8 +380,8 @@ int main(int argc, char** argv)
   LoadPitchData(markov_data->samples, markov_data->pitchOrder, m, markovPitchMap, markov_data->readPath + markov_data->song, root_data, *markov_data);
   PrintMap(markovPitchMap.begin()->second);
 
-  //LoadRhythmData(markov_data->samples, markov_data->rhythmOrder, m, markovRhythmMap, markov_data->readPath + markov_data->song);
-  //GenerateNewPiece(markov_data->readPath + markov_data->song, markov_data->writePath + markov_data->song, markovPitchMap, markovRhythmMap, markov_data->newSamples, root_data, *markov_data);
+  LoadRhythmData(markov_data->samples, markov_data->rhythmOrder, m, markovRhythmMap, markov_data->readPath + markov_data->song);
+  GenerateNewPiece(markov_data->readPath + markov_data->song, markov_data->writePath + markov_data->song, markovPitchMap, markovRhythmMap, markov_data->newSamples, root_data, *markov_data);
 }
 
 /*
