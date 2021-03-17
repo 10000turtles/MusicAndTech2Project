@@ -1,0 +1,22 @@
+Hi,
+This is a project exploring Markov chains in music generation.
+The resources I have used to help create this prototype are Midifile by this guy, this paper and the wikipedia article on markov chains.
+The main focus of this project is to take existing music and create new music that sounds like the original. So, the idea is if I can make a system that turns my music into something that sounds a lot like me, then I can turn music from other amazing, talented, prolific musicians into something that sounds like them.
+This can be done with markov chains and a large enough data set.
+So what are markov chains?
+They are a way of storing the probability of going from any one note to another. 
+Suppose we have this excerpt of notes and we want to make a 1st order markov chain. 
+
+We look at every grouping of two notes, and make an entry in a table where the first note leads to the second like so.
+We then do this for every pair of notes in the list, keeping track of how many times that note comes up.
+We can make a 2nd order markov chain by including the previous two notes, 3rd order with three notes and so on. 
+After you make the markov model, start anywhere in your table, generate a new note, and then update your previous notes based on what you generated. Keep going for as long as you like and voala, infinite music. 
+
+We can apply this same idea to rhythm by replacing the pitch values with rhythm values. 
+
+Another thing I have added is to have different markov tables for different root notes or root chords. This way the music generation will only generate the notes that you play while in that key. This means the generated music is only ever as out of tune as you are.
+
+Here are a few examples of this algorithm in context. Enjoy,
+
+
+
