@@ -1,0 +1,29 @@
+Week 7 - Voice Leading and Midterm Video
+
+This week I added functionality to specify voice leading range.
+This was a fairly non-trivial thing to do and it added quite a bit of
+spaghetti to my code(jazzMachine.cpp). The new algorithm goes something like this,
+
+while (not done with song)
+{
+  if (no options in markov table)
+  {
+    Find all continuations from current spot in table within a certain pitch range.
+    Randomly choose one to be the next note.
+    if (no continuations in range)
+    {
+      pick a random note.
+    }
+  }
+  else
+  {
+    normally pick the note.
+  }
+}
+
+Because of the way my code was formatted, there was not a simple way to
+do this without adding a crap ton of spaghetti to my code. This is definately
+something I want to re-work in the future. As well a big portion of time (~12 hours)
+was spent making my midterm video which you can find at,
+
+https://www.youtube.com/watch?v=cX5KImJ_lEo&t=2s
