@@ -1,12 +1,15 @@
 -song FSharpMinor
 
--root
--rhythm
+-root true
+-rhythm true
 
 -pitchOrder 3
 -rhythmOrder 3
 -newSongs 10
 -voiceLeading 4
 
--readPath /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/midiSamples/
--writePath /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/creations/
+-readPath /home/oem/Documents/Code/MusicAndTech2Project/src/midiSamples/
+-writePath /home/oem/Documents/Code/MusicAndTech2Project/src/creations/
+
+-newGenOctaves 1
+-octaveMultiple 0.4

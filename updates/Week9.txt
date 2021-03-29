@@ -1,0 +1,87 @@
+Week 9 - Data expansion and refactoring
+
+This week was spent mainly on the refactoring of the project. Previously, everything was
+all just squished into one file. It was both unorganized and hard to expand on. Now, each 
+separate part is in its own class and file. There are 6 new files on top of jazzMachine. 
+They are, with explanation,
+
+pitchMap.cpp - 
+  This file handles the storage and creation of the pitch markov map. Curently I am working
+  on an expansion that can accomodate for chords as well as single notes but its not done so
+  the file is currently "under construction". 
+
+rootMap.cpp - 
+  This file handles the storage and creation of the root map. This is fortunately a simple 
+  class so its fairly short. The default contructor may look weird because its just a note 
+  with a negative value. This acts as a control value so that if no root value is specified,
+  everything will be under a common value that won't be any other actual note (-1).
+
+rhythmMap.cpp - 
+  This file handles the rhythm markov map. As well there were some loose numbers in this file
+  that were better suited as actual variables with names. This makes the code much more readable.
+
+utils.cpp - 
+  This file contains many helper functions for the other files. They're all (mostly) templated 
+  which means that they're generalized to any data. This means that no matter which markov table
+  is being used, the functions should still work. 
+
+jazzMachine.cpp - 
+  This file is a cumulitive class of the three previous classes. This file constructs the other 
+  three classes and has functionality to make more songs using the GenerateNewPieces() function.
+  It also holds all of the data for the markov tables.
+
+ArgParser.cpp - 
+  This file handles the input from the config.txt file and stores all of the desired options in
+  an Args class. This class stores all of the relavant variables that can be specified by the user.
+  jazzMachine also holds an Args class so that the "map classes" have access to those variables.
+  This is a convenient convention that I took from CS4530 Advanced Computer Graphics. It has made 
+  it very easy to add new constants without having to write too much new code.
+
+Main.cpp - 
+  This is a simple main function. Nothing much to be said here. 
+
+One of the tricky things about making all of these files is that they all have to depend on 
+MidiFile and some of them depend on eachother. In cpp this causes an issue in that if you "#include"
+the same thing twice, it throws an error because the same thing has been defined twice. Therefore,
+I had to think back to Data Structures and re-learn the #ifndef, #define and #endif keywords. The 
+dependancies of each file are as such,
+
+jazzMachine -> ArgParser, utils, pitchMap, rootMap, rhythmMap, MidiFile.
+pitchMap -> utils, rootMap, MidiFile.
+rootMap -> utils, MidiFile.
+rhythmMap -> utils, MidiFile.
+
+utils and ArgParser depend on nothing else.
+
+Since multiple things depend on utils, MidiFile and rootMap, guards have to be put on these so that 
+they aren't included twice.
+
+The other thing that I worked on was the expansion of the amount of data I have. One of my fellow 
+students commented that I could bias other "licks" or strings of notes over others. This made me 
+think that I could the same thing into the table twice or three times. What if it was in different
+octaves or transposed into different keys? This led me to add my source data into the table not 
+one time but three. One at the current octave and two other one octave above and below it. This 
+way, the style of play is retained but it allows more routes for the generator to take. The small 
+problem with this is that it makes my data points vs pitch graph look like this,
+
+                      -----------
+                    --           --
+                   -               -
+                  -                 -
+                 -                   -
+               --                     --
+            ---                         ---
+      -----                                 -----
+------                                           ------
+
+There is a lot of data in the middle but small wisps of data at the edges. This made me add some 
+cutoff points so that nothing would be generated too low or too high. Since these new melodies 
+are a bit removed from the original, I also weigh them down according to a variable called 
+octaveMultiple. I also added functionality for a variable number of octaves up and down but I feel
+that one octave is enough. 
+
+Also just a quick note, my linux setup on my PC stopped working so I lost a good chunk of work 
+regarding the data expansion part of this project. I am back up and running but it coincided with 
+another very big homework for another class so I do not have any new music to share. Next week I 
+should have chords up and running (which requires a whole other class) and be able to share some 
+new music.

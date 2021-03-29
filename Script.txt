@@ -10,19 +10,24 @@ Suppose we have this excerpt of notes and we want to make a 1st order markov cha
 We look at every grouping of two notes, and make an entry in a table where the first note leads to the second like so.
 We then do this for every pair of notes in the list, keeping track of how many times that note comes up.
 We can make a 2nd order markov chain by including the previous two notes, 3rd order with three notes and so on. 
-After you make the markov model, start anywhere in your table, generate a new note, and then update your previous notes based on what you generated. Keep going for as long as you like and voala, infinite music. 
+After you make the markov model, start anywhere in your table, generate a new note, and then update your previous notes 
+based on what you generated. Keep going for as long as you like and voala, infinite music. 
 
 We can apply this same idea to rhythm by replacing the pitch values with rhythm values. 
 
-Another thing I have added is to have different markov tables for different root notes or root chords. This way the music generation will only generate the notes that you play while in that key. This means the generated music is only ever as out of tune as you are.
+Another thing I have added is to have different markov tables for different root notes or root chords. 
+This way the music generation will only generate the notes that you play while in that key. This means 
+the generated music is only ever as out of tune as you are.
 
 Here are a few examples of this algorithm in context. Enjoy,
 
 So that's it. All of my code is on my github which is linked below along with craig sapps midifile code and the utah paper. 
 
-The future aspirations of this project are to be able to generate cohesive, non-clashing, chords, have a certain metric for the intensity of play at any given time and to deal with rhythm in a non-quantized way. 
+The future aspirations of this project are to be able to generate cohesive, non-clashing, chords, have a certain 
+metric for the intensity of play at any given time and to deal with rhythm in a non-quantized way. 
 
-I have been super interested in this field ever since I started playing jazz and I believe that I can make something that sounds and feels human. Thanks. 
+I have been super interested in this field ever since I started playing jazz and I believe that I can make 
+something that sounds and feels human. Thanks. 
 
 
 

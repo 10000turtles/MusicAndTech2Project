@@ -1,1 +1,1 @@
-/usr/bin/c++  -g -Wall -Wextra -pedantic  -lstdc++fs CMakeFiles/miditime.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/miditime.cpp.o -o miditime  libmidifile.a 
+/usr/bin/c++   -g -Wall -Wextra -pedantic   -lstdc++fs CMakeFiles/miditime.dir/home/oem/Documents/Code/MusicAndTech2Project/tools/miditime.cpp.o  -o miditime  libmidifile.a 

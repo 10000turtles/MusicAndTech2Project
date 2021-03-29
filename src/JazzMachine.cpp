@@ -1,13 +1,13 @@
 // g++ jazzMachine.cpp -lstdc++fs -o jazz
-// ./jazz -song NIYS -rhythm -root -samples 6 -pitchOrder 2 -rhythmOrder 3 -newSongs 1
+// ./jazz -song NIYS -rhythm -root -samples 6 -pitchOrder 2 -rhythmOrder 3
+// -newSongs 1
 
 #include "ArgParser.cpp"
-#include "Binasc.cpp"
-#include "MidiEvent.cpp"
-#include "MidiEventList.cpp"
-#include "MidiFile.cpp"
-#include "MidiMessage.cpp"
-#include "Options.cpp"
+#include "pitchMap.cpp"
+#include "rhythmMap.cpp"
+#include "rootMap.cpp"
+#include "utils.cpp"
+#include <experimental/filesystem>
 #include <filesystem>
 #include <iostream>
 #include <list>
@@ -16,372 +16,140 @@
 using namespace smf;
 using namespace std;
 
-typedef map<int, map<vector<int>, map<int, int>>> PitchMap;
-typedef map<vector<double>, map<double, int>>     RhythmMap;
-typedef vector<pair<double, int>>                 RootMap;
+// typedef map<int, map<vector<int>, map<int, int>>> PitchMap;
+// typedef map<vector<double>, map<double, int>> RhythmMap;
+// typedef vector<pair<double, int>> RootMap;
 
-namespace fs = filesystem;
+namespace fs = experimental::filesystem;
 
-double gen_rand_float()
-{
-  static std::random_device                     rd;
-  static std::mt19937                           engine(rd());
-  static std::uniform_real_distribution<double> dist(0.0, 1.0);
-  return dist(engine);
-}
+class jazzMachine {
+public:
+  pitchMap pitches;
+  rhythmMap rhythms;
+  rootMap roots;
+  Args args;
 
-template <class T>
-vector<T> subVec(vector<T> data, int a, int b)
-{
-  vector<T> temp;
-  for (int i = a; i < b; i++)
-    temp.push_back(data[i]);
-  return temp;
-}
+  jazzMachine() {}
 
-template <class T>
-vector<T> concat(T thing, vector<T> list)
-{
-  vector<T> temp;
-  temp.push_back(thing);
-  for (int i = 0; i < list.size(); i++)
-    temp.push_back(list[i]);
-  return temp;
-}
-
-template <class T>
-string strVec(vector<T> data)
-{
-  string temp = "(";
-  for (int i = 0; i < data.size(); i++)
-  {
-    if (i == data.size() - 1)
-    {
-      temp += to_string(data[i]);
-    }
-    else
-    {
-      temp += to_string(data[i]) + ", ";
-    }
+  jazzMachine(Args a) {
+    args = Args(a.configPath);
+    roots = rootMap(args);
+    pitches = pitchMap(args, roots);
+    rhythms = rhythmMap(args);
   }
-  temp += ")";
-  return temp;
-}
 
-template <class T>
-void PrintMap(map<vector<T>, map<T, int>> mMap)
-{
-  for (typename map<vector<T>, map<T, int>>::iterator i = mMap.begin(); i != mMap.end(); i++)
-  {
-    cout << strVec((*i).first) << " -> ";
-    for (typename map<T, int>::iterator j = (*i).second.begin(); j != (*i).second.end(); j++)
-    {
-      cout << (*j).first << ": " << (*j).second << "  ";
-    }
-    cout << endl;
-  }
-}
+  void GenerateNewPieces();
+};
 
-void LoadPitchData(int samples, int levels, MidiFile* m, PitchMap& mMap, string path)
-{
-  vector<int>    dataPitch;
-  vector<double> dataTime;
-
-  int q = 0;
-  for (const auto& entry : filesystem::directory_iterator(path))
-  {
-    if (!entry.is_directory())
-    {
-      m[q].read(entry.path());
-    }
-    else
-    {
-      continue;
-    }
-
-    dataPitch.clear();
-    dataTime.clear();
-
-    for (int i = 3; i < m[q].getEventCount(0); i++)
-    {
-      if (m[q].getEvent(0, i).getP0() == 144)
-      {
-        dataPitch.push_back(m[q].getEvent(0, i).getP1());
-        dataTime.push_back(m[q].getTimeInSeconds(0, i));
-      }
-    }
-
-    for (int i = levels; i < dataPitch.size() - levels; i++)
-    {
-      mMap[-1][subVec(dataPitch, i - levels, i)][dataPitch[i]]++;
-    }
-    q++;
-  }
-}
-
-void LoadPitchData(int samples, int levels, MidiFile* m, PitchMap& mMap, string path, RootMap& root_data, Args ar)
-{
-  MidiFile       rootFile;
-  vector<int>    dataPitch;
-  vector<double> dataTime;
-  root_data.clear();
-  if (ar.root)
-  {
-    for (const auto& entry : filesystem::directory_iterator(path + "/Root_Note"))
-    {
-      rootFile.read(entry.path());
-      for (int i = 3; i < rootFile.getEventCount(0); i++)
-      {
-        if (rootFile.getEvent(0, i).getP0() == 144)
-        {
-          root_data.push_back(make_pair(rootFile.getTimeInSeconds(0, i), rootFile.getEvent(0, i).getP1()));
-        }
-      }
-      break;
-    }
-  }
-  int q = 0;
-  for (const auto& entry : filesystem::directory_iterator(path))
-  {
-    if (!entry.is_directory())
-    {
-      m[q].read(entry.path());
-    }
-    else
-    {
-      continue;
-    }
-
-    dataPitch.clear();
-    dataTime.clear();
-
-    for (int i = 3; i < m[q].getEventCount(0); i++)
-    {
-      if (m[q].getEvent(0, i).getP0() == 144)
-      {
-        dataPitch.push_back(m[q].getEvent(0, i).getP1());
-        dataTime.push_back(m[q].getTimeInSeconds(0, i));
-      }
-    }
-
-    int rootCounter = 0;
-
-
-    for (int i = levels; i < dataPitch.size(); i++)
-    {
-      while ((rootCounter < ((int)root_data.size() - 1)) && dataTime[i] > root_data[rootCounter + 1].first)
-      {
-        rootCounter++;
-      }
-      mMap[root_data[rootCounter].second][subVec(dataPitch, i - levels, i)][dataPitch[i]]++;
-    }
-    q++;
-  }
-}
-
-void LoadRhythmData(int samples, int levels, MidiFile* m, RhythmMap& mMap, string path)
-{
-  vector<double> data;
-  vector<int>    dataIndicies;
-
-  int q = 0;
-  for (const auto& entry : fs::directory_iterator(path))
-  {
-    if (entry.is_directory())
-    {
-      continue;
-    }
-    m[q].read(entry.path());
-    data.clear();
-    dataIndicies.clear();
-
-    for (int i = 3; i < m[q].getEventCount(0); i++)
-    {
-      if (m[q].getEvent(0, i).getP0() == 144)
-      {
-        dataIndicies.push_back(i);
-      }
-    }
-
-    for (int i = 0; i < dataIndicies.size() - 1; i++)
-    {
-      double t = m[q].getTimeInSeconds(0, dataIndicies[i + 1]) - m[q].getTimeInSeconds(0, dataIndicies[i]);
-      if (t > 0.5)
-      {
-        double tempT = t - 0.5;
-        if (fmod(t, 0.125) == 0 && fmod(t, 0.25) != 0)
-        {
-          data.push_back(-0.125);  // Negative numbers signify a rest
-        }
-        while (tempT > 0)
-        {
-          data.push_back(-0.25);  // Negative numbers signify a rest
-          tempT -= 0.25;
-        }
-      }
-      else if (t > 0)
-      {
-        data.push_back(round(t * 8) / 8.0);
-      }
-    }
-
-    for (int i = levels; i < data.size() - levels; i++)
-    {
-      mMap[subVec(data, i - levels, i)][data[i]]++;
-    }
-    q++;
-  }
-}
-
-template <class T>
-T weightedRandomPick(map<T, int> m)
-{
-  vector<T> list;
-  for (typename map<T, int>::iterator i = m.begin(); i != m.end(); i++)
-    for (int j = 0; j < (*i).second; j++)
-      list.push_back((*i).first);
-
-  typename vector<T>::iterator item = list.begin();
-  advance(item, gen_rand_float() * list.size());
-  return (T)(*item);
-}
-
-
-void GenerateNewPiece(string in, string out, PitchMap pMap, map<vector<double>, map<double, int>> rMap, int n, RootMap root_data, Args ar)
-{
-  MidiFile                       t, s;
-  filesystem::directory_iterator a = filesystem::directory_iterator(in);
-  while (a->is_directory())
-  {
-    a++;
-  }
+void jazzMachine::GenerateNewPieces() {
+  MidiFile t, s;
+  fs::directory_iterator a = fs::directory_iterator(args.readPath);
+  // while (a->is_directory())
+  // {
+  //   a++;
+  // }
   t.read(a->path());
   s.read(a->path());
 
   double totalTime = t.getFileDurationInTicks();
 
-  for (int q = 0; q < n; q++)
-  {
+  for (int q = 0; q < args.newSamples; q++) {
     s.clear();
 
-    map<vector<int>, map<int, int>>::iterator item = pMap[root_data[0].second].begin();
-    std::advance(item, gen_rand_float() * (pMap[root_data[0].second].size()));
+    map<vector<int>, map<int, int>>::iterator item =
+        pitches.m[roots.notes[0]].begin();
+    std::advance(item, gen_rand_float() * (pitches.m[roots.notes[0]].size()));
     vector<int> prevNotes = (*item).first;
 
-    map<vector<double>, map<double, int>>::iterator item2 = rMap.begin();
-    std::advance(item2, gen_rand_float() * (rMap.size()));
+    map<vector<double>, map<double, int>>::iterator item2 = rhythms.m.begin();
+    std::advance(item2, gen_rand_float() * (rhythms.m.size()));
     vector<double> prevRhythms = (*item2).first;
 
     double timeCounter = 0;
-    int    rootCounter = 0;
+    int rootCounter = 0;
 
-    while (timeCounter < totalTime)
-    {
-      while (rootCounter < root_data.size() - 1 && timeCounter > t.getAbsoluteTickTime(root_data[rootCounter + 1].first))
-      {
+    while (timeCounter < totalTime) {
+      while (rootCounter < roots.notes.size() - 1 &&
+             timeCounter >
+                 t.getAbsoluteTickTime(roots.times[rootCounter + 1])) {
         rootCounter++;
       }
-      while (pMap[root_data[rootCounter].second][prevNotes].size() == 0)
-      {
-        item = pMap[root_data[rootCounter].second].begin();
+      while (pitches.m[roots.notes[rootCounter]][prevNotes].size() == 0) {
+        item = pitches.m[roots.notes[rootCounter]].begin();
 
-        if (ar.voiceLeadingRange == -1)
-        {
-          std::advance(item, gen_rand_float() * (pMap[root_data[rootCounter].second].size()));
+        if (args.voiceLeadingRange == -1) {
+          std::advance(item, gen_rand_float() *
+                                 (pitches.m[roots.notes[rootCounter]].size()));
           prevNotes = (*item).first;
-        }
-        else
-        {
+        } else {
           vector<vector<int>> possibleContinuations;
-          while (item != pMap[root_data[rootCounter].second].end())
-          {
-            if (abs((*item).first[(*item).first.size() - 1] - prevNotes[prevNotes.size() - 1]) <= ar.voiceLeadingRange)
-            {
-              if (!abs((*item).first[(*item).first.size() - 1] - prevNotes[prevNotes.size() - 1]) == 0)
-              {
+          while (item != pitches.m[roots.notes[rootCounter]].end()) {
+            if (abs((*item).first[(*item).first.size() - 1] -
+                    prevNotes[prevNotes.size() - 1]) <=
+                args.voiceLeadingRange) {
+              if (!abs((*item).first[(*item).first.size() - 1] -
+                       prevNotes[prevNotes.size() - 1]) == 0) {
                 possibleContinuations.push_back((*item).first);
               }
             }
 
             item++;
           }
-          if (possibleContinuations.size() == 0)
-          {
-            item = pMap[root_data[rootCounter].second].begin();
-            std::advance(item, gen_rand_float() * (pMap[root_data[rootCounter].second].size()));
+          if (possibleContinuations.size() == 0) {
+            item = pitches.m[roots.notes[rootCounter]].begin();
+            std::advance(item,
+                         gen_rand_float() *
+                             (pitches.m[roots.notes[rootCounter]].size()));
             prevNotes = (*item).first;
-          }
-          else
-          {
-            vector<vector<int>>::iterator newPick = possibleContinuations.begin();
+          } else {
+            vector<vector<int>>::iterator newPick =
+                possibleContinuations.begin();
             advance(newPick, gen_rand_float() * possibleContinuations.size());
             prevNotes = (*newPick);
 
-
             s.addNoteOn(0, timeCounter, 0, prevNotes[prevNotes.size() - 1], 80);
-            s.addNoteOff(0, timeCounter + t.getAbsoluteTickTime(0.125), 0, prevNotes[prevNotes.size() - 1], 80);
-            timeCounter += t.getAbsoluteTickTime(0.125);  // Change this to add in rhythmic variation instead of a 16th note
+            s.addNoteOff(0, timeCounter + t.getAbsoluteTickTime(0.125), 0,
+                         prevNotes[prevNotes.size() - 1], 80);
+            timeCounter += t.getAbsoluteTickTime(
+                0.125); // Change this to add in rhythmic variation instead of a
+                        // 16th note
           }
         }
       }
 
-      if (rMap[prevRhythms].size() == 0)
-      {
-        item2 = rMap.begin();
-        std::advance(item2, gen_rand_float() * (rMap.size()));
+      if (rhythms.m[prevRhythms].size() == 0) {
+        item2 = rhythms.m.begin();
+        std::advance(item2, gen_rand_float() * (rhythms.m.size()));
         prevRhythms = (*item2).first;
       }
-      int    newNote   = weightedRandomPick(pMap[root_data[rootCounter].second][prevNotes]);
-      double newRhythm = weightedRandomPick(rMap[prevRhythms]);
+      int newNote =
+          weightedRandomPick(pitches.m[roots.notes[rootCounter]][prevNotes]);
+      double newRhythm = weightedRandomPick(rhythms.m[prevRhythms]);
 
-      for (int j = 0; j < prevNotes.size() - 1; j++)
-      {
+      for (int j = 0; j < prevNotes.size() - 1; j++) {
         prevNotes[j] = prevNotes[j + 1];
       }
 
-      for (int j = 0; j < prevRhythms.size() - 1; j++)
-      {
+      for (int j = 0; j < prevRhythms.size() - 1; j++) {
         prevRhythms[j] = prevRhythms[j + 1];
       }
 
-      prevNotes[prevNotes.size() - 1]     = newNote;
+      prevNotes[prevNotes.size() - 1] = newNote;
       prevRhythms[prevRhythms.size() - 1] = newRhythm;
 
-      if (newRhythm > 0)
-      {
+      if (newRhythm > 0) {
         s.addNoteOn(0, timeCounter, 0, newNote, 80);
-        s.addNoteOff(0, timeCounter + t.getAbsoluteTickTime(0.125), 0, newNote, 80);
+        s.addNoteOff(0, timeCounter + t.getAbsoluteTickTime(0.125), 0, newNote,
+                     80);
         timeCounter += t.getAbsoluteTickTime(newRhythm);
-      }
-      else
-      {
+      } else {
         timeCounter += t.getAbsoluteTickTime(-newRhythm);
       }
     }
 
     s.sortTracks();
-    s.write(out + +"/Rhythm" + to_string(q) + ".mid");
+    s.write(args.writePath + "/Rhythm" + to_string(q) + ".mid");
   }
-}
-
-int main(int argc, char** argv)
-{
-  Args* markov_data = new Args(string(argv[1]));
-
-  MidiFile* m = new MidiFile[markov_data->samples];
-
-  PitchMap  markovPitchMap;
-  RhythmMap markovRhythmMap;
-  RootMap   root_data;
-
-  root_data.push_back(make_pair(0.0, -1));
-
-
-  LoadPitchData(markov_data->samples, markov_data->pitchOrder, m, markovPitchMap, markov_data->readPath + markov_data->song, root_data, *markov_data);
-  PrintMap(markovPitchMap.begin()->second);
-
-  LoadRhythmData(markov_data->samples, markov_data->rhythmOrder, m, markovRhythmMap, markov_data->readPath + markov_data->song);
-  GenerateNewPiece(markov_data->readPath + markov_data->song, markov_data->writePath + markov_data->song, markovPitchMap, markovRhythmMap, markov_data->newSamples, root_data, *markov_data);
 }
 
 /*

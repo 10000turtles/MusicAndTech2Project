@@ -6,3 +6,17 @@
 
 #IncludeRegexTransform: 
 
+/home/oem/Documents/Code/MusicAndTech2Project/tools/tobin.cpp
+stdlib.h
+-
+stdio.h
+-
+ctype.h
+-
+string.h
+-
+iostream
+-
+iomanip
+-
+

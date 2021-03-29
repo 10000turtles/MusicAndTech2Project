@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/jazz.dir/JazzMachine.cpp.o"
+  "CMakeFiles/jazz.dir/main.cpp.o"
   "jazz"
   "jazz.pdb"
 )

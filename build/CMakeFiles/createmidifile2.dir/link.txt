@@ -1,1 +1,1 @@
-/usr/bin/c++  -g -Wall -Wextra -pedantic  -lstdc++fs CMakeFiles/createmidifile2.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/createmidifile2.cpp.o -o createmidifile2  libmidifile.a 
+/usr/bin/c++   -g -Wall -Wextra -pedantic   -lstdc++fs CMakeFiles/createmidifile2.dir/home/oem/Documents/Code/MusicAndTech2Project/tools/createmidifile2.cpp.o  -o createmidifile2  libmidifile.a 

@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/type0.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/type0.cpp.o"
+  "CMakeFiles/type0.dir/home/oem/Documents/Code/MusicAndTech2Project/tools/type0.cpp.o"
   "type0"
   "type0.pdb"
 )

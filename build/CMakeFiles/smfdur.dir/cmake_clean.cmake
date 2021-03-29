@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/smfdur.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/smfdur.cpp.o"
+  "CMakeFiles/smfdur.dir/home/oem/Documents/Code/MusicAndTech2Project/tools/smfdur.cpp.o"
   "smfdur"
   "smfdur.pdb"
 )

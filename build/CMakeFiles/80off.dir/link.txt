@@ -1,1 +1,1 @@
-/usr/bin/c++  -g -Wall -Wextra -pedantic  -lstdc++fs CMakeFiles/80off.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/80off.cpp.o -o 80off  libmidifile.a 
+/usr/bin/c++   -g -Wall -Wextra -pedantic   -lstdc++fs CMakeFiles/80off.dir/home/oem/Documents/Code/MusicAndTech2Project/tools/80off.cpp.o  -o 80off  libmidifile.a 

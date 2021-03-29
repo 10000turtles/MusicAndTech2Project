@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/asciimidi.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/asciimidi.cpp.o"
+  "CMakeFiles/asciimidi.dir/home/oem/Documents/Code/MusicAndTech2Project/tools/asciimidi.cpp.o"
   "asciimidi"
   "asciimidi.pdb"
 )

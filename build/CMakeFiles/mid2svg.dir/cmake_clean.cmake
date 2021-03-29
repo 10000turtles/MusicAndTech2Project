@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/mid2svg.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/mid2svg.cpp.o"
+  "CMakeFiles/mid2svg.dir/home/oem/Documents/Code/MusicAndTech2Project/tools/mid2svg.cpp.o"
   "mid2svg"
   "mid2svg.pdb"
 )

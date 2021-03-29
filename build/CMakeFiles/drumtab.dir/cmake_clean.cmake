@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/drumtab.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/drumtab.cpp.o"
+  "CMakeFiles/drumtab.dir/home/oem/Documents/Code/MusicAndTech2Project/tools/drumtab.cpp.o"
   "drumtab"
   "drumtab.pdb"
 )

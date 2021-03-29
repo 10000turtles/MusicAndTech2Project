@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/miditime.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/miditime.cpp.o"
+  "CMakeFiles/miditime.dir/home/oem/Documents/Code/MusicAndTech2Project/tools/miditime.cpp.o"
   "miditime"
   "miditime.pdb"
 )

@@ -1,4 +1,4 @@
-# Install script for directory: /home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src
+# Install script for directory: /home/oem/Documents/Code/MusicAndTech2Project/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -37,23 +37,18 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-# Set default install directory permissions.
-if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
-endif()
-
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/libmidifile.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/home/oem/Documents/Code/MusicAndTech2Project/build/libmidifile.a")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/midifile" TYPE FILE FILES
-    "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/inc/Binasc.h"
-    "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/inc/MidiEvent.h"
-    "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/inc/MidiEventList.h"
-    "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/inc/MidiFile.h"
-    "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/inc/MidiMessage.h"
-    "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/src/inc/Options.h"
+    "/home/oem/Documents/Code/MusicAndTech2Project/src/inc/Binasc.h"
+    "/home/oem/Documents/Code/MusicAndTech2Project/src/inc/MidiEvent.h"
+    "/home/oem/Documents/Code/MusicAndTech2Project/src/inc/MidiEventList.h"
+    "/home/oem/Documents/Code/MusicAndTech2Project/src/inc/MidiFile.h"
+    "/home/oem/Documents/Code/MusicAndTech2Project/src/inc/MidiMessage.h"
+    "/home/oem/Documents/Code/MusicAndTech2Project/src/inc/Options.h"
     )
 endif()
 
@@ -65,5 +60,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/oem/Documents/Code/MusicAndTech2Project/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

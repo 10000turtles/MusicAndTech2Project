@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/binasc.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/binasc.cpp.o"
+  "CMakeFiles/binasc.dir/home/oem/Documents/Code/MusicAndTech2Project/tools/binasc.cpp.o"
   "binasc"
   "binasc.pdb"
 )

@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/midi2text.dir/home/turtles/Documents/Code/School/ARTS4160/MusicAndTech2Project/tools/midi2text.cpp.o"
+  "CMakeFiles/midi2text.dir/home/oem/Documents/Code/MusicAndTech2Project/tools/midi2text.cpp.o"
   "midi2text"
   "midi2text.pdb"
 )
