@@ -624,33 +624,6 @@ tobin/fast:
 	$(MAKE) -f CMakeFiles/tobin.dir/build.make CMakeFiles/tobin.dir/build
 .PHONY : tobin/fast
 
-ArgParser.o: ArgParser.cpp.o
-
-.PHONY : ArgParser.o
-
-# target to build an object file
-ArgParser.cpp.o:
-	$(MAKE) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/ArgParser.cpp.o
-.PHONY : ArgParser.cpp.o
-
-ArgParser.i: ArgParser.cpp.i
-
-.PHONY : ArgParser.i
-
-# target to preprocess a source file
-ArgParser.cpp.i:
-	$(MAKE) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/ArgParser.cpp.i
-.PHONY : ArgParser.cpp.i
-
-ArgParser.s: ArgParser.cpp.s
-
-.PHONY : ArgParser.s
-
-# target to generate assembly for a file
-ArgParser.cpp.s:
-	$(MAKE) -f CMakeFiles/midifile.dir/build.make CMakeFiles/midifile.dir/ArgParser.cpp.s
-.PHONY : ArgParser.cpp.s
-
 Binasc.o: Binasc.cpp.o
 
 .PHONY : Binasc.o
@@ -1806,9 +1779,6 @@ help:
 	@echo "... textmidi"
 	@echo "... perfid"
 	@echo "... tobin"
-	@echo "... ArgParser.o"
-	@echo "... ArgParser.i"
-	@echo "... ArgParser.s"
 	@echo "... Binasc.o"
 	@echo "... Binasc.i"
 	@echo "... Binasc.s"

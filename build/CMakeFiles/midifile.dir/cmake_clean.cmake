@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/midifile.dir/ArgParser.cpp.o"
   "CMakeFiles/midifile.dir/Binasc.cpp.o"
   "CMakeFiles/midifile.dir/MidiEvent.cpp.o"
   "CMakeFiles/midifile.dir/MidiEventList.cpp.o"

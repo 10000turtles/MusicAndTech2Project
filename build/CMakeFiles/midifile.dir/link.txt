@@ -1,2 +1,2 @@
-/usr/bin/ar qc libmidifile.a  CMakeFiles/midifile.dir/Options.cpp.o CMakeFiles/midifile.dir/Binasc.cpp.o CMakeFiles/midifile.dir/MidiEvent.cpp.o CMakeFiles/midifile.dir/MidiEventList.cpp.o CMakeFiles/midifile.dir/MidiFile.cpp.o CMakeFiles/midifile.dir/MidiMessage.cpp.o CMakeFiles/midifile.dir/ArgParser.cpp.o
+/usr/bin/ar qc libmidifile.a  CMakeFiles/midifile.dir/Options.cpp.o CMakeFiles/midifile.dir/Binasc.cpp.o CMakeFiles/midifile.dir/MidiEvent.cpp.o CMakeFiles/midifile.dir/MidiEventList.cpp.o CMakeFiles/midifile.dir/MidiFile.cpp.o CMakeFiles/midifile.dir/MidiMessage.cpp.o
 /usr/bin/ranlib libmidifile.a

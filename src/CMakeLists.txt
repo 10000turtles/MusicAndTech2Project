@@ -70,7 +70,6 @@ set(SRCS
     MidiEventList.cpp
     MidiFile.cpp
     MidiMessage.cpp
-    ArgParser.cpp
 )
 
 set(HDRS
