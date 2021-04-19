@@ -29,7 +29,7 @@ template <class T> vector<T> concat(T thing, vector<T> list);
 template <class T> vector<T> concat(vector<T> list, vector<T> addedList);
 template <class T> string strVec(vector<T> data);
 template <class T> vector<T> toVector(set<T> s);
-template <class T> void PrintMap(map<vector<T>, map<T, int>> mMap);
+template <class T> void PrintMap(map<vector<T>, map<T, double>> mMap);
 template <class T> T weightedRandomPick(map<T, double> m);
 bool operator==(const Chord &lhs, const Chord &rhs);
 bool operator!=(const Chord &lhs, const Chord &rhs);
@@ -37,7 +37,11 @@ bool operator<(const Chord &lhs, const Chord &rhs);
 vector<Chord> upOctave(vector<Chord> c);
 vector<Chord> downOctave(vector<Chord> c);
 vector<Chord> transpose(vector<Chord> c, int t);
-string toString(Chord c);
+vector<pair<vector<Chord>, double>> recurseSubVec(vector<Chord> a);
+void recurseSubVecHelper(vector<pair<vector<Chord>, double>> *all,
+                         vector<Chord> a, long unsigned int level,
+                         double weight);
+string to_string(Chord c);
 
 namespace fs = experimental::filesystem;
 
@@ -155,16 +159,20 @@ public:
 
   vector<int> getNotes() { return notes; }
   vector<Chord> getPermutations() { return concat(*this, recursePerms(notes)); }
+  vector<Chord> getPermutationsWithoutSelf() { return recursePerms(notes); }
   vector<Chord> recursePerms(vector<int> n) {
     set<Chord> temp;
     for (long unsigned int i = 0; i < n.size(); i++) {
-      temp.insert(Chord(concat(subVec(n, 0, i), subVec(n, i + 1, n.size()))));
+      Chord temp3(concat(subVec(n, 0, i), subVec(n, i + 1, n.size())));
+      if (temp3.notes.size() != 0)
+        temp.insert(temp3);
 
       vector<Chord> temp2 =
           recursePerms(concat(subVec(n, 0, i), subVec(n, i + 1, n.size())));
       if (temp2.size() > 1)
         for (long unsigned int j = 0; j < temp2.size(); j++) {
-          temp.insert(temp2[j]);
+          if (temp2[j].notes.size() != 0)
+            temp.insert(temp2[j]);
         }
     }
     return toVector(temp);
@@ -223,38 +231,58 @@ public:
       dataTime.clear();
 
       double prevTime = 0.0;
-      Chord *newChord = new Chord();
+      Chord newChord;
 
       for (int i = 3; i < file.getEventCount(0); i++) {
-        if (file.getEvent(0, i).getP0() == 144) {
-          if (file.getEvent(0, i).getP0() - prevTime == 0.0) {
-            newChord->add(file.getEvent(0, i).getP1());
-          } else {
-            dataPitch.push_back(*newChord);
-            dataTime.push_back(prevTime);
-            newChord->clear();
-          }
 
-          prevTime = file.getTimeInSeconds(0, i);
+        if (file.getEvent(0, i).getP0() == 144) {
+          // cout << file.getEvent(0, i).getP0() << " "
+          //      << file.getEvent(0, i).getP1() << " "
+          //      << file.getEvent(0, i).getP2() << " "
+          //      << file.getEvent(0, i).getP3() << " "
+          //      << file.getTimeInSeconds(0, i) - prevTime << endl;
+          if (file.getTimeInSeconds(0, i) - prevTime == 0.0) {
+            newChord.add(file.getEvent(0, i).getP1());
+          } else {
+            if (newChord.notes.size() != 0) {
+              dataPitch.push_back(newChord);
+              dataTime.push_back(prevTime);
+              newChord.clear();
+            }
+            newChord.add(file.getEvent(0, i).getP1());
+          }
         }
+
+        prevTime = file.getTimeInSeconds(0, i);
       }
+      // cout << strVec(dataPitch) << endl;
 
       int rootCounter = 0;
 
-      for (int i = a.pitchOrder; i < dataPitch.size(); i++) {
+      for (long unsigned int i = a.pitchOrder; i < dataPitch.size(); i++) {
         while ((rootCounter < ((int)r.notes.size() - 1)) &&
                dataTime[i] > r.times[rootCounter + 1]) {
           rootCounter++;
         }
-        m[r.notes[rootCounter]][subVec(dataPitch, i - a.pitchOrder, i)]
-         [dataPitch[i]]++;
-        for (int j = 0; j < a.newGenOctaves; j++) {
-          m[r.notes[rootCounter]][transpose(
-              subVec(dataPitch, i - a.pitchOrder, i), -12 * j)][dataPitch[i]] +=
-              pow(a.octaveMultiple, j);
-          m[r.notes[rootCounter]][transpose(
-              subVec(dataPitch, i - a.pitchOrder, i), 12 * j)][dataPitch[i]] +=
-              pow(a.octaveMultiple, j);
+        vector<pair<vector<Chord>, double>> subVecs =
+            recurseSubVec(subVec(dataPitch, i - a.pitchOrder, i));
+        vector<Chord> newChords = dataPitch[i].getPermutations();
+        for (long unsigned int j = 0; j < subVecs.size(); j++) {
+          for (long unsigned int k = 0; k < newChords.size(); k++) {
+            // if (subVecs[j].second > 1) {
+            //   cout << "AHHH" << endl;
+            // }
+            m[r.notes[rootCounter]][subVecs[j].first][newChords[k]] +=
+                1.0 / subVecs.size() / newChords.size();
+            for (int j = 0; j < a.newGenOctaves; j++) {
+              m[r.notes[rootCounter]][transpose(subVecs[j].first, -12 * j)]
+               [dataPitch[i]] +=
+                  pow(a.octaveMultiple, j) / subVecs.size() / newChords.size();
+              m[r.notes[rootCounter]][transpose(subVecs[j].first, 12 * j)]
+               [dataPitch[i]] += subVecs[j].second * pow(a.octaveMultiple, j) /
+                                 subVecs.size() / newChords.size();
+            }
+          }
         }
       }
     }
@@ -291,7 +319,7 @@ public:
         }
       }
 
-      for (int i = 0; i < dataIndicies.size() - 1; i++) {
+      for (long unsigned int i = 0; i < dataIndicies.size() - 1; i++) {
         double t = file.getTimeInSeconds(0, dataIndicies[i + 1]) -
                    file.getTimeInSeconds(0, dataIndicies[i]);
         if (t > QUARTER_NOTE) {
@@ -310,7 +338,8 @@ public:
         }
       }
 
-      for (int i = a.rhythmOrder; i < data.size() - a.rhythmOrder; i++) {
+      for (long unsigned int i = a.rhythmOrder; i < data.size() - a.rhythmOrder;
+           i++) {
         m[subVec(data, i - a.rhythmOrder, i)][data[i]]++;
       }
     }
@@ -362,7 +391,7 @@ public:
       vector<double> prevRhythms = (*item2).first;
 
       double timeCounter = 0;
-      int rootCounter = 0;
+      long unsigned int rootCounter = 0;
 
       while (timeCounter < totalTime) {
         while (rootCounter < roots.notes.size() - 1 &&
@@ -387,11 +416,11 @@ public:
             weightedRandomPick(pitches.m[roots.notes[rootCounter]][prevNotes]);
         double newRhythm = weightedRandomPick(rhythms.m[prevRhythms]);
 
-        for (int j = 0; j < prevNotes.size() - 1; j++) {
+        for (long unsigned int j = 0; j < prevNotes.size() - 1; j++) {
           prevNotes[j] = prevNotes[j + 1];
         }
 
-        for (int j = 0; j < prevRhythms.size() - 1; j++) {
+        for (long unsigned int j = 0; j < prevRhythms.size() - 1; j++) {
           prevRhythms[j] = prevRhythms[j + 1];
         }
 
@@ -399,7 +428,7 @@ public:
         prevRhythms[prevRhythms.size() - 1] = newRhythm;
 
         if (newRhythm > 0) {
-          for (int i = 0; i < newNote.getNotes().size(); i++) {
+          for (long unsigned int i = 0; i < newNote.getNotes().size(); i++) {
             s.addNoteOn(0, timeCounter, 0, newNote.getNotes()[i], 80);
             s.addNoteOff(0, timeCounter + t.getAbsoluteTickTime(0.125), 0,
                          newNote.getNotes()[i], 80);
@@ -434,14 +463,14 @@ template <class T> vector<T> subVec(vector<T> data, int a, int b) {
 template <class T> vector<T> concat(T thing, vector<T> list) {
   vector<T> temp;
   temp.push_back(thing);
-  for (int i = 0; i < list.size(); i++)
+  for (long unsigned int i = 0; i < list.size(); i++)
     temp.push_back(list[i]);
   return temp;
 }
 
 template <class T> vector<T> concat(vector<T> list, vector<T> addedList) {
   vector<T> temp = list;
-  for (int i = 0; i < addedList.size(); i++)
+  for (long unsigned int i = 0; i < addedList.size(); i++)
     temp.push_back(addedList[i]);
   return temp;
 }
@@ -454,9 +483,14 @@ template <class T> vector<T> toVector(set<T> s) {
   return temp;
 }
 
+template <class T> vector<T> replace(vector<T> data, T newData, int index) {
+  data[index] = newData;
+  return data;
+}
+
 template <class T> string strVec(vector<T> data) {
   string temp = "(";
-  for (int i = 0; i < data.size(); i++) {
+  for (long unsigned int i = 0; i < data.size(); i++) {
     if (i == data.size() - 1) {
       temp += to_string(data[i]);
     } else {
@@ -467,13 +501,13 @@ template <class T> string strVec(vector<T> data) {
   return temp;
 }
 
-template <class T> void PrintMap(map<vector<T>, map<T, int>> mMap) {
-  for (typename map<vector<T>, map<T, int>>::iterator i = mMap.begin();
+template <class T> void PrintMap(map<vector<T>, map<T, double>> mMap) {
+  for (typename map<vector<T>, map<T, double>>::iterator i = mMap.begin();
        i != mMap.end(); i++) {
     cout << strVec((*i).first) << " -> ";
-    for (typename map<T, int>::iterator j = (*i).second.begin();
+    for (typename map<T, double>::iterator j = (*i).second.begin();
          j != (*i).second.end(); j++) {
-      cout << (*j).first << ": " << (*j).second << "  ";
+      cout << to_string((*j).first) << ": " << (*j).second << "  ";
     }
     cout << endl;
   }
@@ -492,7 +526,7 @@ template <class T> T weightedRandomPick(map<T, double> m) {
   double randPick = gen_rand_float() * sum;
   double count = 0;
 
-  for (int i = 0; i < list.size(); i++) {
+  for (long unsigned int i = 0; i < list.size(); i++) {
     count += weights[i];
     if (count > randPick) {
       return list[i];
@@ -502,8 +536,8 @@ template <class T> T weightedRandomPick(map<T, double> m) {
 }
 
 vector<Chord> upOctave(vector<Chord> c) {
-  for (int i = 0; i < c.size(); i++) {
-    for (int j = 0; j < c[i].notes.size(); j++) {
+  for (long unsigned int i = 0; i < c.size(); i++) {
+    for (long unsigned int j = 0; j < c[i].notes.size(); j++) {
       c[i].notes[j] += 12;
     }
   }
@@ -511,8 +545,8 @@ vector<Chord> upOctave(vector<Chord> c) {
 }
 
 vector<Chord> downOctave(vector<Chord> c) {
-  for (int i = 0; i < c.size(); i++) {
-    for (int j = 0; j < c[i].notes.size(); j++) {
+  for (long unsigned int i = 0; i < c.size(); i++) {
+    for (long unsigned int j = 0; j < c[i].notes.size(); j++) {
       c[i].notes[j] -= 12;
     }
   }
@@ -520,12 +554,33 @@ vector<Chord> downOctave(vector<Chord> c) {
 }
 
 vector<Chord> transpose(vector<Chord> c, int t) {
-  for (int i = 0; i < c.size(); i++) {
-    for (int j = 0; j < c[i].notes.size(); j++) {
+  for (long unsigned int i = 0; i < c.size(); i++) {
+    for (long unsigned int j = 0; j < c[i].notes.size(); j++) {
       c[i].notes[j] += t;
     }
   }
   return c;
+}
+
+vector<pair<vector<Chord>, double>> recurseSubVec(vector<Chord> a) {
+  vector<pair<vector<Chord>, double>> *all =
+      new vector<pair<vector<Chord>, double>>();
+  recurseSubVecHelper(all, a, 0, 1);
+  return *all;
+}
+
+void recurseSubVecHelper(vector<pair<vector<Chord>, double>> *all,
+                         vector<Chord> a, long unsigned int level,
+                         double weight) {
+  if (level < a.size()) {
+    all->push_back(make_pair(a, weight));
+    vector<Chord> t = a[level].getPermutationsWithoutSelf();
+    for (long unsigned int i = 0; i < t.size(); i++) {
+      vector<Chord> r = replace(a, t[i], level);
+      all->push_back(make_pair(r, weight));
+      recurseSubVecHelper(all, r, level + 1, weight);
+    }
+  }
 }
 
 bool operator==(const Chord &lhs, const Chord &rhs) {
@@ -555,7 +610,7 @@ bool operator<(const Chord &lhs, const Chord &rhs) {
   } else if (lhs.notes.size() > rhs.notes.size()) {
     return false;
   } else {
-    for (int i = 0; i < lhs.notes.size(); i++) {
+    for (long unsigned int i = 0; i < lhs.notes.size(); i++) {
       if (lhs.notes[i] < rhs.notes[i]) {
         return true;
       } else if (lhs.notes[i] > rhs.notes[i]) {
@@ -566,66 +621,16 @@ bool operator<(const Chord &lhs, const Chord &rhs) {
   }
 }
 
-string toString(Chord c) {
+string to_string(Chord c) {
   string temp;
   temp = temp + "(";
   for (long unsigned int i = 0; i < c.notes.size(); i++) {
     if (i == c.notes.size() - 1) {
-      temp = temp + to_string(c.notes[i]) + ")";
+      temp = temp + to_string(c.notes[i]);
     } else {
       temp = temp + to_string(c.notes[i]) + ", ";
     }
   }
+  temp += ")";
   return temp;
 }
-
-/*
-void GenerateNewPiece(string in, string out, PitchMap pMap, int newSongs)
-{
-  int      q = 0;
-  MidiFile t;
-  for (const auto& entry : fs::directory_iterator(in))
-  {
-    t.clear();
-    t.read(entry.path());
-    map<vector<int>, map<int, int>>::iterator item = pMap.begin();
-    std::advance(item, gen_rand_float() * (pMap.size()));
-    vector<int> prevNotes = (*item).first;
-    list<int>   activeNotes;
-
-    for (int i = 3; i < t.getEventCount(0); i++)
-    {
-      if (t.getEvent(0, i).getP0() == 144)
-      {
-        if (pMap[prevNotes].size() == 0)
-        {
-          item = pMap.begin();
-          std::advance(item, gen_rand_float() * (pMap.size()));
-          prevNotes = (*item).first;
-        }
-
-        int newNote = weightedRandomPick(pMap[prevNotes]);
-        for (int j = 0; j < prevNotes.size() - 1; j++)
-        {
-          prevNotes[j] = prevNotes[j + 1];
-        }
-        prevNotes[prevNotes.size() - 1] = newNote;
-        t.getEvent(0, i).setP1(newNote);
-        activeNotes.push_back(newNote);
-      }
-      else if (t.getEvent(0, i).getP0() == 128)
-      {
-        int newNote = activeNotes.front();
-        t.getEvent(0, i).setP1(newNote);
-        activeNotes.pop_front();
-      }
-    }
-    t.write(out + "/" + to_string(q) + ".mid");
-    q++;
-    if (q == newSongs)
-    {
-      break;
-    }
-  }
-}
-*/
