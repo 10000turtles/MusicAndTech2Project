@@ -366,12 +366,17 @@ public:
     cout << "Finished pitches" << endl;
     rhythms = rhythmMap(args);
     cout << "Finished rhythms" << endl;
+    PrintMap(rhythms.m);
   }
 
   void GenerateNewPieces() {
     MidiFile t, s;
-    fs::directory_iterator a = fs::directory_iterator(args.readPath);
 
+    fs::directory_iterator a =
+        fs::directory_iterator(args.readPath + args.song);
+    while (a->path() == args.readPath + args.song + string("/Root_Note"))
+      a++;
+    cout << a->path() << endl;
     t.read(a->path());
     s.read(a->path());
 
