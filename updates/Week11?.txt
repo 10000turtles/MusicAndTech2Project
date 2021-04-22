@@ -1,0 +1,28 @@
+Week 11 - Chords!!!
+
+This. Was. A. Mistake. The main complication of involving chords is that you create a lot more possible notes.
+Normally a piano can only generate 88 notes but if you take into account all of the possible combinations of notes
+that turns into 2^88 ~ 3.09 * 10^26. Of course you'll never actually play all of those chord but it means that the 
+total number of possible notes increases. The unfortunate consequence of this is that the markov table becomes much 
+more linear in nature; it is more likely to generate the exact same thing you played. 
+
+I implemented the two data expansion algorithms I talked about in previous updates:
+
+1. Adding all possible permutations of each chord to the table.
+
+2. Adding multiple copies of each line for different octaves. 
+
+I found that both of these extra add-on's were not effective. I would not reccomend implementing them as they muddy 
+the table by adding in entries that often feed back into themselves and make you play the same thing over and over 
+again for multiple bars. Even if you weight the permutations down it doesn't really effect much since most of the time
+that weight is the only entry in that spot so it is 100% deterministic no matter the note weight.
+
+I will keep the code for all of this in the project as I think it is important to keep "failiures" or paths that don't
+work so that people in the future don't do them.
+
+I think in the coming week or two I am going to add markov tables for both note volume and note length, and after those 
+two coding problems, I am done with the code for this assignment. After that is a week of creativity and actually using 
+my tool to make music. The goal is to have at least 5 songs that use my algorithm to make an algorithmic album of sorts.
+I already have two songs that work great so I only need 3 more to make an EP of sorts. After that, the video Ill make 
+summarizing this entire project and a possible write-up to cover any of the technical ends that don't make it into the video.
+That will be the conclusion of this project which explores the possible things to do with markov chains in music generation.
